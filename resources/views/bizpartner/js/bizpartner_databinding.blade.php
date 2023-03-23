@@ -23,7 +23,8 @@
         APPDEV_ORDERSTATUS: ui("EMP_ORDER_STATUS").getValue().trim(),
 
     };
-
+   
+    
     ui("DELIVERY_ADDRESS").setValue(createBPdetails.APPDEV_TYPE).setEditable(false);
     ui("EMP_NAME").setValue(createBPdetails.APPDEV_NAME).setEditable(false);
     ui("EMP_PHONE").setValue(createBPdetails.APPDEV_NUMBER).setEditable(false);
@@ -43,5 +44,27 @@
     ui("EMP_INSURANCE").setValue(createBPdetails.APPDEV_INSURANCE).setEditable(false);
     ui("EMP_CUSTOMS_INFO").setValue(createBPdetails.APPDEV_CUSTOMSINFO).setEditable(false);
     ui("EMP_ORDER_STATUS").setValue(createBPdetails.APPDEV_ORDERSTATUS).setEditable(false);
+}
+
+const onEdit = () => {
+    ui("DELIVERY_ADDRESS").setEditable(true);
+    ui("EMP_NAME").setEditable(true);
+    ui("EMP_PHONE").setEditable(true);
+    ui("EMP_EMAIL").setEditable(true);
+    ui("EMP_DELIVERY_DATE").setEditable(true);
+    ui("EMP_DELIVERY_TIME").setEditable(true);
+    ui("EMP_DELIVERY_INSTRUCTION").setEditable(true);
+    ui("EMP_SHIPPING_METHOD").setEditable(true);
+    ui("EMP_SHIPPING_CARRIER").setEditable(true);
+    ui("EMP_TRACKING_NUMBER").setEditable(true);
+    ui("EMP_PACKAGE_WEIGHT").setEditable(true);
+    ui("EMP_PACKAGE_DIMENSION").setEditable(true);
+    ui("EMP_DELIVERY_CONFIRMATION").setEditable(true);
+    ui("EMP_SIGNATURE_REQUIRED").setEditable(true);
+    ui("EMP_ORDER_NUMBER").setEditable(true);
+    ui("EMP_SHIPPING_COST").setEditable(true);
+    ui("EMP_INSURANCE").setEditable(true);
+    ui("EMP_CUSTOMS_INFO").setEditable(true);
+    ui("EMP_ORDER_STATUS").setEditable(true);
 }
     </script>

@@ -132,7 +132,7 @@
 							press: function(){
 							
 							//function call 
-							//createBP();
+							onEdit();
 						
 					}
                         }).addStyleClass("sapMTB-Transparent-CTX"),
