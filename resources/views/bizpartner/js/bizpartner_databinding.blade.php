@@ -25,7 +25,7 @@
     };
    
     
-    ui("DELIVERY_ADDRESS").setValue(createBPdetails.APPDEV_TYPE).setEditable(false);
+    ui("DELIVERY_ADDRESS").setValue(createBPdetails.APPDEV_TYPE).setEditable(false).addStyleClass('deliveryInput');
     ui("EMP_NAME").setValue(createBPdetails.APPDEV_NAME).setEditable(false);
     ui("EMP_PHONE").setValue(createBPdetails.APPDEV_NUMBER).setEditable(false);
     ui("EMP_EMAIL").setValue(createBPdetails.APPDEV_EMAIL).setEditable(false);

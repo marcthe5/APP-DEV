@@ -3,7 +3,7 @@
 
 @section('content')
 
-@include('bizpartner.css.bizpartner_css')
+@include('bizpartner.css.AppDelivery_css')
 @include('bizpartner.js.bizpartner_controls')
 @include('bizpartner.js.bizpartner_databinding')
 

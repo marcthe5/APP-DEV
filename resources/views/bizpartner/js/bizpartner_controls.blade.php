@@ -123,6 +123,8 @@
 							
 							//function call 
 							createBP();
+							//new sap.m.Input("DELIVERY_ADDRESS",{value:"", border: none, editable:true}),
+
 							
                         
                             }
@@ -160,35 +162,35 @@
 														/* LEFT PANEL */
 														
                                                         new sap.ui.core.Title("GENERAL_INFO_TITLE1",{text:""}),
-                                                        new sap.m.Label({text:"Delivery Address",width:"160px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("DELIVERY_ADDRESS",{value:"", width:TextWidth, editable:true}),
+                                                        new sap.m.Label({text:"Delivery Address",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("DELIVERY_ADDRESS",{placeholder:"________________________", width:TextWidth}),														
 
-                                                        new sap.m.Label({text:"Contact Name",width:labelWidth}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_NAME",{value:"", width:TextWidth, editable:true}),
+                                                        new sap.m.Label({text:"Contact Name",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_NAME",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
-                                                        new sap.m.Label({text:"Contact Phone Number",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_PHONE",{value:"", width:TextWidth, editable:true}),
+                                                        new sap.m.Label({text:"Contact Phone Number",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_PHONE",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
-														new sap.m.Label({text:"Email Address",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_EMAIL",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Email Address",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_EMAIL",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
-														new sap.m.Label({text:"Delivery Date",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_DELIVERY_DATE",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Delivery Date",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_DELIVERY_DATE",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
-														new sap.m.Label({text:"Delivery Time",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_DELIVERY_TIME",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Delivery Time",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_DELIVERY_TIME",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
-														new sap.m.Label({text:"Delivery Instructions",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_DELIVERY_INSTRUCTION",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Delivery Instructions",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_DELIVERY_INSTRUCTION",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
-														new sap.m.Label({text:"Shipping Method",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_SHIPPING_METHOD",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Shipping Method",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_SHIPPING_METHOD",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
-														new sap.m.Label({text:"Shipping Carrier",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_SHIPPING_CARRIER",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Shipping Carrier",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_SHIPPING_CARRIER",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
                                                         
-                                                        new sap.m.Label({text:"Tracking Number",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_TRACKING_NUMBER",{value:"", width:TextWidth, editable:true}),
+                                                        new sap.m.Label({text:"Tracking Number",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_TRACKING_NUMBER",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
                                                                      
 														
@@ -198,32 +200,32 @@
 
                                                         new sap.ui.core.Title("GENERAL_INFO_TITLE2",{text:""}),
 
-														new sap.m.Label({text:"Package Weight",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_PACKAGE_WEIGHT",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Package Weight",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_PACKAGE_WEIGHT",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
  
-														new sap.m.Label({text:"Package Dimensions",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_PACKAGE_DIMENSION",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Package Dimensions",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_PACKAGE_DIMENSION",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
-														new sap.m.Label({text:"Delivery Confirmation",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_DELIVERY_CONFIRMATION",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Delivery Confirmation",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_DELIVERY_CONFIRMATION",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
-														new sap.m.Label({text:"Signature Required",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_SIGNATURE_REQUIRED",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Signature Required",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_SIGNATURE_REQUIRED",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
-														new sap.m.Label({text:"Order Number",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_ORDER_NUMBER",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Order Number",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_ORDER_NUMBER",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
-														new sap.m.Label({text:"Shipping Cost",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_SHIPPING_COST",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Shipping Cost",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_SHIPPING_COST",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
-														new sap.m.Label({text:"Insurance",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_INSURANCE",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Insurance",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_INSURANCE",{placeholder:"________________________",value:"", width:TextWidth, editable:true}),
 
-														new sap.m.Label({text:"Customs Information",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_CUSTOMS_INFO",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Customs Information",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_CUSTOMS_INFO",{placeholder:"________________________",alue:"", width:TextWidth, editable:true}),
 
-														new sap.m.Label({text:"Order Status",width:"150px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_ORDER_STATUS",{value:"", width:TextWidth, editable:true}),
+														new sap.m.Label({text:"Order Status",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_ORDER_STATUS",{placeholder:"Order Status",value:"", width:TextWidth, editable:true}),
 
 
 
