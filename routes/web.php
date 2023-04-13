@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('bizpartner', function () {
+Route::get('EMPLOYEE', function () {
     return view ('bizpartner/bizpartner_template');
 
 });
