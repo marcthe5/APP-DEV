@@ -1,4 +1,6 @@
 <script>
+
+	//let ID = ui("DELIVERY_ID").getValue();
     	var bizData = [
 		{
 			//dummy data
@@ -46,13 +48,13 @@
 				if (bp_id.DELIVERY_ID == id) {
 				 
 						bp_id.DELIVERY_ADDRESS    			= ui('DELIVERY_ADDRESS').getValue().trim();
-						bp_id.EMP_NAME     			= ui('EMP_NAME').getSelectedKey();
+						bp_id.EMP_NAME     			= ui('EMP_NAME').getValue();
 						bp_id.EMP_PHONE    			= ui('EMP_PHONE').getValue().trim();
 						bp_id.EMP_EMAIL      	= ui('EMP_EMAIL').getValue().trim();
 						bp_id.EMP_DELIVERY_DATE      	= ui('EMP_DELIVERY_DATE').getValue().trim();
 						bp_id.EMP_DELIVERY_TIME     	= ui('EMP_DELIVERY_TIME').getValue().trim();
 						bp_id.EMP_DELIVERY_INSTRUCTION    		= ui('EMP_DELIVERY_INSTRUCTION').getValue().trim();
-						bp_id.EMP_SHIPPING_METHOD    		= ui('EMP_SHIPPING_METHOD').getValue().trim();
+						bp_id.EMP_SHIPPING_METHOD    		= ui('EMP_SHIPPING_METHOD').getSelectedKey().trim();
 						bp_id.EMP_SHIPPING_CARRIER    		= ui('EMP_SHIPPING_CARRIER').getValue().trim();
 						bp_id.EMP_TRACKING_NUMBER    		= ui('EMP_TRACKING_NUMBER').getValue().trim();
 						bp_id.EMP_PACKAGE_WEIGHT    		= ui('EMP_PACKAGE_WEIGHT').getValue().trim();
@@ -73,6 +75,17 @@
 			screenMode._display(id);
 			listingBp._getData(bizData);
 			setTimeout(() => {busyDialog.close();}, 2000);
+		},
+		_validate: function(id){
+			let existID = false;
+			for(let i=0; i<bizData.length; i++){
+				if(bizData[i].DELIVERY_ID == id){
+					existID = true;
+				}
+			}
+
+			return existID;
+
 		}
 	}
 
@@ -144,7 +157,7 @@
 				ui('EMP_DELIVERY_DATE').setValue(data[0].EMP_DELIVERY_DATE).setEditable(false);
 				ui('EMP_DELIVERY_TIME').setValue(data[0].EMP_DELIVERY_TIME).setEditable(false);
 				ui('EMP_DELIVERY_INSTRUCTION').setValue(data[0].EMP_DELIVERY_INSTRUCTION).setEditable(false);
-				ui('EMP_SHIPPING_METHOD').setValue(data[0].EMP_SHIPPING_METHOD).setEditable(false);
+				//ui('EMP_SHIPPING_METHOD').setValue(data[0].EMP_SHIPPING_METHOD).setEditable(false);
 				ui('EMP_SHIPPING_CARRIER').setValue(data[0].EMP_SHIPPING_CARRIER).setEditable(false);
 				ui('EMP_TRACKING_NUMBER').setValue(data[0].EMP_TRACKING_NUMBER).setEditable(false);
 				ui('EMP_PACKAGE_WEIGHT').setValue(data[0].EMP_PACKAGE_WEIGHT).setEditable(false);
@@ -178,15 +191,22 @@
 	
 	
 	};
+	const modal_idExist = ()=> {
+		//open modal after save button
+		let busyDialog = showBusyDialog("ID EXIST!");
+				busyDialog.open();
+				//go_App_Right.to('BP_PAGE_DISPLAY');
+				setTimeout(() => {busyDialog.close();}, 2000);
+	}
     const createBP = ()=> {
 		//open modal after save button
-		let busyDialog = showBusyDialog("Directing to Table Data..");
-				busyDialog.open();
+		proceed_notification("Directing to Table Data....");
 				go_App_Right.to('BP_PAGE_DISPLAY');
 
 
     let createBPdetails = {
        
+		
 		DELIVERY_ID: ui("DELIVERY_ID").getValue().trim(),
         DELIVERY_ADDRESS : ui("DELIVERY_ADDRESS").getValue().trim(),
         EMP_NAME : ui("EMP_NAME").getValue().trim(),
@@ -195,7 +215,7 @@
         EMP_DELIVERY_DATE : ui("EMP_DELIVERY_DATE").getValue().trim(),
         EMP_DELIVERY_TIME : ui("EMP_DELIVERY_TIME").getValue().trim(),
         EMP_DELIVERY_INSTRUCTION : ui("EMP_DELIVERY_INSTRUCTION").getValue().trim(),
-        EMP_SHIPPING_METHOD: ui("EMP_SHIPPING_METHOD").getValue().trim(),
+        EMP_SHIPPING_METHOD: ui("EMP_SHIPPING_METHOD").getSelectedKey().trim(),
         EMP_SHIPPING_CARRIER : ui("EMP_SHIPPING_CARRIER").getValue().trim(),
         EMP_TRACKING_NUMBER : ui("EMP_TRACKING_NUMBER").getValue().trim(),
         EMP_PACKAGE_WEIGHT : ui("EMP_PACKAGE_WEIGHT").getValue().trim(),
@@ -210,10 +230,12 @@
 
     };
 	/** SEND INPUTTED DATA to TABLE DATA */
+	//if(createBPdetails.DELIVERY_ID!= ui("DELIVERY_ID").getValue()){
         bizData.push(createBPdetails);
 		screenMode._display(createBPdetails.DELIVERY_ID);
 		setTimeout(() => {busyDialog.close();}, 2000);
-   
+	//}
+	
     
     /*ui("DELIVERY_ADDRESS").setValue(createBPdetails.APPDEV_TYPE).setEditable(false).addStyleClass('deliveryInput');
     ui("EMP_NAME").setValue(createBPdetails.APPDEV_NAME).setEditable(false);
@@ -252,7 +274,7 @@ const onEdit = () => {
     ui("EMP_DELIVERY_DATE").setEditable(true);
     ui("EMP_DELIVERY_TIME").setEditable(true);
     ui("EMP_DELIVERY_INSTRUCTION").setEditable(true);
-    ui("EMP_SHIPPING_METHOD").setEditable(true);
+   // ui("EMP_SHIPPING_METHOD").setEditable(true);
     ui("EMP_SHIPPING_CARRIER").setEditable(true);
     ui("EMP_TRACKING_NUMBER").setEditable(true);
     ui("EMP_PACKAGE_WEIGHT").setEditable(true);
@@ -269,29 +291,31 @@ const onEdit = () => {
 
 const onCancel = () => {
 
+	ui("CREATE_BP_SAVE_BTN").setVisible(false);
+	ui("CREATE_BP_EDIT_BTN").setVisible(true);
+	ui("CREATE_BP_CANCEL_BTN").setVisible(false);
 
+	ui("DELIVERY_ID").setEditable(false);
 
-ui("DELIVERY_ID").setValue(null);
-
-ui("DELIVERY_ADDRESS").setValue(null);
-ui("EMP_NAME").setValue(null);
-ui("EMP_PHONE").setValue(null);
-ui("EMP_EMAIL").setValue(null);
-ui("EMP_DELIVERY_DATE").setValue(null);
-ui("EMP_DELIVERY_TIME").setValue(null);
-ui("EMP_DELIVERY_INSTRUCTION").setValue(null);
-ui("EMP_SHIPPING_METHOD").setValue(null);
-ui("EMP_SHIPPING_CARRIER").setValue(null);
-ui("EMP_TRACKING_NUMBER").setValue(null);
-ui("EMP_PACKAGE_WEIGHT").setValue(null);
-ui("EMP_PACKAGE_DIMENSION").setValue(null);
-ui("EMP_DELIVERY_CONFIRMATION").setValue(null);
-ui("EMP_SIGNATURE_REQUIRED").setValue(null);
-ui("EMP_ORDER_NUMBER").setValue(null);
-ui("EMP_SHIPPING_COST").setValue(null);
-ui("EMP_INSURANCE").setValue(null);
-ui("EMP_CUSTOMS_INFO").setValue(null);
-ui("EMP_ORDER_STATUS").setValue(null);
+ui("DELIVERY_ADDRESS").setEditable(false);
+ui("EMP_NAME").setEditable(false);
+ui("EMP_PHONE").setEditable(false);
+ui("EMP_EMAIL").setEditable(false);
+ui("EMP_DELIVERY_DATE").setEditable(false);
+ui("EMP_DELIVERY_TIME").setEditable(false);
+ui("EMP_DELIVERY_INSTRUCTION").setEditable(false);
+//ui("EMP_SHIPPING_METHOD").setEditable(false);
+ui("EMP_SHIPPING_CARRIER").setEditable(false);
+ui("EMP_TRACKING_NUMBER").setEditable(false);
+ui("EMP_PACKAGE_WEIGHT").setEditable(false);
+ui("EMP_PACKAGE_DIMENSION").setEditable(false);
+ui("EMP_DELIVERY_CONFIRMATION").setEditable(false);
+ui("EMP_SIGNATURE_REQUIRED").setEditable(false);
+ui("EMP_ORDER_NUMBER").setEditable(false);
+ui("EMP_SHIPPING_COST").setEditable(false);
+ui("EMP_INSURANCE").setEditable(false);
+ui("EMP_CUSTOMS_INFO").setEditable(false);
+ui("EMP_ORDER_STATUS").setEditable(false);
 }
 
 function showBusyDialog(message){
@@ -384,7 +408,7 @@ const listingBp = {
 		ui('EMP_DELIVERY_DATE').setValue("").setEditable(true);
 		ui('EMP_DELIVERY_TIME').setValue("").setEditable(true);
 		ui('EMP_DELIVERY_INSTRUCTION').setValue("").setEditable(true);
-		ui('EMP_SHIPPING_METHOD').setValue("").setEditable(true);
+		ui('EMP_SHIPPING_METHOD').setSelectedKey("").setEditable(true);
 		ui('EMP_SHIPPING_CARRIER').setValue("").setEditable(true);
 		ui('EMP_TRACKING_NUMBER').setValue("").setEditable(true);
 		ui('EMP_PACKAGE_WEIGHT').setValue("").setEditable(true);

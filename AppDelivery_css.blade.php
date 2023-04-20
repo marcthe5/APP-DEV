@@ -10,7 +10,10 @@
 #DELIVERY_ID {
 
 }
- }
+@font-face {
+font-family: 'Road Rage';
+src: local('Road Rage'), local('Road Rage'), url('Road Rage.otf') format('otf');
+	}
 	
 	.class_label_padding{
 		font-size:12px;
@@ -50,6 +53,18 @@ pointer-events: none
 .menu_title{
 	color: red;
 }
+.sapMMessageToast{
+        background : #AA5656 ;
+        width:50rem ;
+        max-width : 50rem ;
+        opacity: 0.7 ;
+		color: white;
+		font-weight: bolder;
+		font-size: 70px;
+		font-family: Arial;
+
+    }
+
   
 </style>
 </style>

@@ -166,12 +166,24 @@
                         new sap.uxap.ObjectPageHeaderActionButton("CREATE_BP_SAVE_BTN",{
                             icon: "sap-icon://save",
 							press: function(){
+
+							let id = ui("DELIVERY_ID").getValue();
 							
+							let exist = bpDataOrganizer._validate(id);
+                            if(exist){
+								warning_notification("ID EXIST!");
+								
+								//alert("ID EXIST!");
+
+							}
+							else{
+                                               
 							if(screenMode._mode == "create"){
 								createBP();
 							}else{
 								bpDataOrganizer._updateById(screenMode._id);
 							}
+						}
 							
 							
 							
@@ -231,7 +243,11 @@
 														}),	
 
                                                         new sap.m.Label({text:"Delivery Address",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("DELIVERY_ADDRESS",{placeholder:"", width:TextWidth}),														
+														new sap.m.Input("DELIVERY_ADDRESS",{
+															placeholder:"", 
+															width:TextWidth, 
+															
+														}),														
 
                                                         new sap.m.Label({text:"Contact Name",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_NAME",{placeholder:"",value:"", width:TextWidth, editable:true}),
@@ -252,7 +268,31 @@
 														new sap.m.Input("EMP_DELIVERY_INSTRUCTION",{placeholder:"",value:"", width:TextWidth, editable:true}),
 
 														new sap.m.Label({text:"Shipping Method",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_SHIPPING_METHOD",{placeholder:"",value:"", width:TextWidth, editable:true}),
+														new sap.m.Select("EMP_SHIPPING_METHOD",{
+															items : [
+																new sap.ui.core.ListItem({
+																	text:"COD",
+																	key: "COD",
+																	//icon: "",
+																	additionalText:"COD",
+																}),	
+																new sap.ui.core.ListItem({
+																	text:"BANK",
+																	key: "BANK",
+																	//icon: "",
+																	additionalText:"BANK",
+																}),	
+																new sap.ui.core.ListItem({
+																	text:"GCASH",
+																	key: "GCASH",
+																	//icon: "",
+																	additionalText:"GCASH",
+																})	
+
+															]
+															}),
+
+
 
 														new sap.m.Label({text:"Shipping Carrier",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_SHIPPING_CARRIER",{placeholder:"",value:"", width:TextWidth, editable:true}),
@@ -260,7 +300,7 @@
                                                         new sap.m.Label({text:"Tracking Number",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_TRACKING_NUMBER",{placeholder:"",value:"", width:TextWidth, editable:true}),
 
-                                                                     
+	
 														
 														/** RIGHT PANEL **/
 
