@@ -157,7 +157,7 @@
 				ui('EMP_DELIVERY_DATE').setValue(data[0].EMP_DELIVERY_DATE).setEditable(false);
 				ui('EMP_DELIVERY_TIME').setValue(data[0].EMP_DELIVERY_TIME).setEditable(false);
 				ui('EMP_DELIVERY_INSTRUCTION').setValue(data[0].EMP_DELIVERY_INSTRUCTION).setEditable(false);
-				//ui('EMP_SHIPPING_METHOD').setValue(data[0].EMP_SHIPPING_METHOD).setEditable(false);
+				ui('EMP_SHIPPING_METHOD').setSelectedKey(data[0].EMP_SHIPPING_METHOD).setEditable(false);
 				ui('EMP_SHIPPING_CARRIER').setValue(data[0].EMP_SHIPPING_CARRIER).setEditable(false);
 				ui('EMP_TRACKING_NUMBER').setValue(data[0].EMP_TRACKING_NUMBER).setEditable(false);
 				ui('EMP_PACKAGE_WEIGHT').setValue(data[0].EMP_PACKAGE_WEIGHT).setEditable(false);
@@ -198,10 +198,10 @@
 				//go_App_Right.to('BP_PAGE_DISPLAY');
 				setTimeout(() => {busyDialog.close();}, 2000);
 	}
-    const createBP = ()=> {
+    const createBP2 = ()=> {
 		//open modal after save button
 		proceed_notification("Directing to Table Data....");
-				go_App_Right.to('BP_PAGE_DISPLAY');
+				go_App_Right.to('PAGE_BP_LISTING');
 
 
     let createBPdetails = {
@@ -237,25 +237,8 @@
 	//}
 	
     
-    /*ui("DELIVERY_ADDRESS").setValue(createBPdetails.APPDEV_TYPE).setEditable(false).addStyleClass('deliveryInput');
-    ui("EMP_NAME").setValue(createBPdetails.APPDEV_NAME).setEditable(false);
-    ui("EMP_PHONE").setValue(createBPdetails.APPDEV_NUMBER).setEditable(false);
-    ui("EMP_EMAIL").setValue(createBPdetails.APPDEV_EMAIL).setEditable(false);
-    ui("EMP_DELIVERY_DATE").setValue(createBPdetails.APPDEV_DELIVERYDATE).setEditable(false);
-    ui("EMP_DELIVERY_TIME").setValue(createBPdetails.APPDEV_DELIVERYTIME).setEditable(false);
-    ui("EMP_DELIVERY_INSTRUCTION").setValue(createBPdetails.APPDEV_DELIVERYINSTRUCTION).setEditable(false);
-    ui("EMP_SHIPPING_METHOD").setValue(createBPdetails.APPDEV_SHIPMETHOD).setEditable(false);
-    ui("EMP_SHIPPING_CARRIER").setValue(createBPdetails.APPDEV_SHIPCARRIER).setEditable(false);
-    ui("EMP_TRACKING_NUMBER").setValue(createBPdetails.APPDEV_TRACKNUM).setEditable(false);
-    ui("EMP_PACKAGE_WEIGHT").setValue(createBPdetails.APPDEV_PACKWEIGHT).setEditable(false);
-    ui("EMP_PACKAGE_DIMENSION").setValue(createBPdetails.APPDEV_PACKDIMENSION).setEditable(false);
-    ui("EMP_DELIVERY_CONFIRMATION").setValue(createBPdetails.APPDEV_DELIVERYCONFIRM).setEditable(false);
-    ui("EMP_SIGNATURE_REQUIRED").setValue(createBPdetails.APPDEV_SIGNATURE).setEditable(false);
-    ui("EMP_ORDER_NUMBER").setValue(createBPdetails.APPDEV_ORDERNUM).setEditable(false);
-    ui("EMP_SHIPPING_COST").setValue(createBPdetails.APPDEV_SHIPCOST).setEditable(false);
-    ui("EMP_INSURANCE").setValue(createBPdetails.APPDEV_INSURANCE).setEditable(false);
-    ui("EMP_CUSTOMS_INFO").setValue(createBPdetails.APPDEV_CUSTOMSINFO).setEditable(false);
-    ui("EMP_ORDER_STATUS").setValue(createBPdetails.APPDEV_ORDERSTATUS).setEditable(false);*/
+    
+
 }
 
 const onEdit = () => {
@@ -274,7 +257,7 @@ const onEdit = () => {
     ui("EMP_DELIVERY_DATE").setEditable(true);
     ui("EMP_DELIVERY_TIME").setEditable(true);
     ui("EMP_DELIVERY_INSTRUCTION").setEditable(true);
-   // ui("EMP_SHIPPING_METHOD").setEditable(true);
+   ui("EMP_SHIPPING_METHOD").setEditable(true);
     ui("EMP_SHIPPING_CARRIER").setEditable(true);
     ui("EMP_TRACKING_NUMBER").setEditable(true);
     ui("EMP_PACKAGE_WEIGHT").setEditable(true);
@@ -304,7 +287,7 @@ ui("EMP_EMAIL").setEditable(false);
 ui("EMP_DELIVERY_DATE").setEditable(false);
 ui("EMP_DELIVERY_TIME").setEditable(false);
 ui("EMP_DELIVERY_INSTRUCTION").setEditable(false);
-//ui("EMP_SHIPPING_METHOD").setEditable(false);
+ui("EMP_SHIPPING_METHOD").setSelectedKey(false);
 ui("EMP_SHIPPING_CARRIER").setEditable(false);
 ui("EMP_TRACKING_NUMBER").setEditable(false);
 ui("EMP_PACKAGE_WEIGHT").setEditable(false);
@@ -324,64 +307,89 @@ return new sap.m.BusyDialog({text : message});
 
 
 
-var lv_dialog_save = new sap.m.Dialog("COMPCODE_SAVE_DIALOG",{
-title: "Confirmation",
-beginButton: new sap.m.Button({
-text:"Ok",
-type:"Accept",
-icon:"sap-icon://accept",
-press:function(oEvt){
-oEvt.getSource().getParent().close();
-}
-}),
-endButton:new sap.m.Button({
-text:"Cancel",
-type:"Reject",
-icon:"sap-icon://decline",
-press:function(oEvt){
-oEvt.getSource().getParent().close();
-}
-}),
-content:[
-new sap.m.HBox({
-items:[
-new sap.m.Label({text:"Confirm to create changes?"})
-]
-})
-]
-}).addStyleClass('sapUiSizeCompact');
 
+
+const createBP = () => {
+		let busyDialog = showBusyDialog("Please wait loading..");
+		busyDialog.open();
+		let data_for_general = {
+			DELIVERY_ID: ui("DELIVERY_ID").getValue().trim(),
+        DELIVERY_ADDRESS : ui("DELIVERY_ADDRESS").getValue().trim(),
+        EMP_NAME : ui("EMP_NAME").getValue().trim(),
+        EMP_PHONE : ui("EMP_PHONE").getValue().trim(),
+        EMP_EMAIL : ui("EMP_EMAIL").getValue().trim(),
+        EMP_DELIVERY_DATE : ui("EMP_DELIVERY_DATE").getValue().trim(),
+        EMP_DELIVERY_TIME : ui("EMP_DELIVERY_TIME").getValue().trim(),
+        EMP_DELIVERY_INSTRUCTION : ui("EMP_DELIVERY_INSTRUCTION").getValue().trim(),
+        EMP_SHIPPING_METHOD: ui("EMP_SHIPPING_METHOD").getSelectedKey().trim(),
+        EMP_SHIPPING_CARRIER : ui("EMP_SHIPPING_CARRIER").getValue().trim(),
+        EMP_TRACKING_NUMBER : ui("EMP_TRACKING_NUMBER").getValue().trim(),
+        EMP_PACKAGE_WEIGHT : ui("EMP_PACKAGE_WEIGHT").getValue().trim(),
+        EMP_PACKAGE_DIMENSION: ui("EMP_PACKAGE_DIMENSION").getValue().trim(),
+        EMP_DELIVERY_CONFIRMATION: ui("EMP_DELIVERY_CONFIRMATION").getValue().trim(),
+        EMP_SIGNATURE_REQUIRED: ui("EMP_SIGNATURE_REQUIRED").getValue().trim(),
+        EMP_ORDER_NUMBER: ui("EMP_ORDER_NUMBER").getValue().trim(),
+        EMP_SHIPPING_COST: ui("EMP_SHIPPING_COST").getValue().trim(),
+        EMP_INSURANCE: ui("EMP_INSURANCE").getValue().trim(),
+        EMP_CUSTOMS_INFO: ui("EMP_CUSTOMS_INFO").getValue().trim(),
+        EMP_ORDER_STATUS: ui("EMP_ORDER_STATUS").getValue().trim(),
+   		};
+		//add new data to array
+		bizData.push(data_for_general);
+		screenMode._display(data_for_general.DELIVERY_ID);
+		setTimeout(() => {busyDialog.close();}, 2000);
+		
+		//commented use for backend only
+		/*fetch('/bizpartner/create_data',{
+			method : 'POST',
+			headers : {
+				'Content-Type' : 'application/json',
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+			},
+			body : JSON.stringify(data_for_general)
+		}).then((response) => {
+			console.log(response);
+			return response.json();
+		}).then(data => {
+			console.log(data);
+		}).catch((err) => {
+			console.log("Rejected "+err);
+		});*/
+        
+    }
+
+	
 //Table Binding:
+
+			
 const displayBp =  {
-_get_data(search){
-//var busy_diag = fn_show_busy_dialog("Please wait. Loading...");
-//busy_diag.open();
-const dataforDisplayBP = [
-{
-BIZPART_ID  : "10001",
-NAME1       : "Noel Lehitimas",
-NAME2       : "The Great Buhay Igit"
-},
-{
-BIZPART_ID  : "10002",
-NAME1       : "Noel Lehitimas2",
-NAME2       : "The Great Buhay Igit2"
-}
-];
-this._bind_data(dataforDisplayBP);
-//busy_diag.close();
-},
-_bind_data(data){
-ui("DISPLAY_BP_TABLE").unbindRows();
-var lt_model = new sap.ui.model.json.JSONModel();
-lt_model.setSizeLimit(data.length);
-lt_model.setData(data);
-ui('DISPLAY_BP_TABLE').setModel(lt_model).bindRows("/");
-ui("DISPLAY_BP_TABLE").setVisible(true);
-ui('DISPLAY_BP_TABLE_LABEL').setText("List (" + data.length + ")");
-//fn_clear_table_sorter("DISPLAY_BP_TABLE");
-}
-};
+		
+		_get_data(search){
+			
+			let busyDialog = showBusyDialog("Please wait loading..");
+				busyDialog.open();
+				let data = bpDataOrganizer._filteredById(search);
+				this._bind_data(data);
+			
+			
+			setTimeout(() => {busyDialog.close();}, 2000);
+		},
+		_bind_data(data){
+		
+			ui("DISPLAY_BP_TABLE").unbindRows();
+			
+			var lt_model = new sap.ui.model.json.JSONModel();
+				lt_model.setSizeLimit(data.length);
+				lt_model.setData(data);
+				
+			ui('DISPLAY_BP_TABLE').setModel(lt_model).bindRows("/");
+			ui("DISPLAY_BP_TABLE").setVisible(true);
+			
+			ui('DISPLAY_BP_TABLE_LABEL').setText("List (" + data.length + ")");
+			//fn_clear_table_sorter("DISPLAY_BP_TABLE");
+			
+		}		
+	};
 
 const listingBp = {
 		_getData : function(data){
@@ -397,6 +405,37 @@ const listingBp = {
 			ui('BP_LISTING_LABEL').setText("Delivery Partner (" + data.length + ")");
 		}
 	}
+	let lv_dialog_save = new sap.m.Dialog("BP_SAVE_DIALOG",{
+		title: "Confirmation",
+		beginButton: new sap.m.Button({
+			text:"Ok",
+			type:"Accept",
+			icon:"sap-icon://accept",
+			press:function(oEvt){
+				if(screenMode._mode == "create"){
+					createBP();
+				}else{
+					bpDataOrganizer._updateById(screenMode._id);
+				}
+				oEvt.getSource().getParent().close();
+			}
+		}),
+		endButton:new sap.m.Button({
+			text:"Cancel",
+			type:"Reject",
+			icon:"sap-icon://decline",
+			press:function(oEvt){
+			oEvt.getSource().getParent().close();
+			}
+		}),
+		content:[
+			new sap.m.HBox({
+				items:[
+				new sap.m.Label({text:"Confirm to save changes?"})
+				]
+			})
+		]
+	}).addStyleClass('sapUiSizeCompact');
 
 
 	const emptyFields = () => {
@@ -422,6 +461,10 @@ const listingBp = {
 		ui('EMP_ORDER_STATUS').setValue("").setEditable(true);
 
 	}
+
+
+
+	
 
 
 

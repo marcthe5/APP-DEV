@@ -40,7 +40,7 @@
 						go_App_Right.to('CREATE_BP_PAGE');
 
 						//after click DELIVERY-button > empty input fields
-						emptyFields();
+						//emptyFields();
 						
 						screenMode._create();
 
@@ -73,14 +73,14 @@
 		
                 },
                 {
-                    title   : "Display Business Partner",
+                    title   : "Display Delivery Partner",
                     icon    : "sap-icon://business-card",
                     visible : true,
 					funct   :"display_delivery"
 
                 },
                 {
-                    title   : "Business Partner Listing",
+                    title   : "Business Delivery Table",
                     icon    : "sap-icon://checklist-item",
                     visible : true,
 					funct   :"delivery_listing"
@@ -166,30 +166,29 @@
                         new sap.uxap.ObjectPageHeaderActionButton("CREATE_BP_SAVE_BTN",{
                             icon: "sap-icon://save",
 							press: function(){
+                            								
 
-							let id = ui("DELIVERY_ID").getValue();
-							
-							let exist = bpDataOrganizer._validate(id);
-                            if(exist){
-								warning_notification("ID EXIST!");
+							let id = ui("DELIVERY_ID").getValue().trim();
+							if(id){
+								if(screenMode._mode == "create"){
+						    		let exist = bpDataOrganizer._validate(id);
+									if(exist){
+										warning_notification("ID EXIST!");			
+								    }
+									else{
+										createBP();
 								
-								//alert("ID EXIST!");
-
-							}
+									}
+								}
+								else{
+									bpDataOrganizer._updateById(screenMode.id);
+								}		
+						    }
 							else{
-                                               
-							if(screenMode._mode == "create"){
-								createBP();
-							}else{
-								bpDataOrganizer._updateById(screenMode._id);
+								warning_notification("DELIVERY ID IS REQUIRED");
 							}
-						}
-							
-							
-							
-							//new sap.m.Input("DELIVERY_ADDRESS",{value:"", border: none, editable:true}),
 
-							
+			
 						
                             }
                         }).addStyleClass("sapMTB-Transparent-CTX"),
@@ -208,7 +207,8 @@
 							press: function(){
 							
 							//function call 
-							onCancel();
+							//onCancel();
+							screenMode._display(screenMode._id);
 						
 					}
                         }).addStyleClass("sapMTB-Transparent-CTX"),
@@ -259,10 +259,14 @@
 														new sap.m.Input("EMP_EMAIL",{placeholder:"",value:"", width:TextWidth, editable:true}),
 
 														new sap.m.Label({text:"Delivery Date",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_DELIVERY_DATE",{placeholder:"",value:"", width:TextWidth, editable:true}),
+														new sap.m.Input("EMP_DELIVERY_DATE",{placeholder:"",value:"", width:TextWidth,
+															type: "Date",
+															 editable:true}),
 
 														new sap.m.Label({text:"Delivery Time",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_DELIVERY_TIME",{placeholder:"",value:"", width:TextWidth, editable:true}),
+														new sap.m.Input("EMP_DELIVERY_TIME",{placeholder:"",value:"", width:TextWidth,
+															type: "Time",
+															 editable:true}),
 
 														new sap.m.Label({text:"Delivery Instructions",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_DELIVERY_INSTRUCTION",{placeholder:"",value:"", width:TextWidth, editable:true}),
@@ -273,19 +277,19 @@
 																new sap.ui.core.ListItem({
 																	text:"COD",
 																	key: "COD",
-																	//icon: "",
+																	icon: "sap-icon://loan",
 																	additionalText:"COD",
 																}),	
 																new sap.ui.core.ListItem({
 																	text:"BANK",
 																	key: "BANK",
-																	//icon: "",
+																	icon: "sap-icon://credit-card",
 																	additionalText:"BANK",
 																}),	
 																new sap.ui.core.ListItem({
 																	text:"GCASH",
 																	key: "GCASH",
-																	//icon: "",
+																	icon: "sap-icon://paid-leave",
 																	additionalText:"GCASH",
 																})	
 
@@ -298,7 +302,9 @@
 														new sap.m.Input("EMP_SHIPPING_CARRIER",{placeholder:"",value:"", width:TextWidth, editable:true}),
                                                         
                                                         new sap.m.Label({text:"Tracking Number",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_TRACKING_NUMBER",{placeholder:"",value:"", width:TextWidth, editable:true}),
+														new sap.m.Input("EMP_TRACKING_NUMBER",{placeholder:"",value:"", width:TextWidth,
+															type: "Number",
+															 editable:true}),
 
 	
 														
@@ -309,10 +315,10 @@
                                                         new sap.ui.core.Title("GENERAL_INFO_TITLE2",{text:""}),
 
 														new sap.m.Label({text:"Package Weight",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_PACKAGE_WEIGHT",{placeholder:"",value:"", width:TextWidth, editable:true}),
+														new sap.m.Input("EMP_PACKAGE_WEIGHT",{placeholder:"kg",value:"", width:TextWidth, editable:true}),
  
 														new sap.m.Label({text:"Package Dimensions",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_PACKAGE_DIMENSION",{placeholder:"",value:"", width:TextWidth, editable:true}),
+														new sap.m.Input("EMP_PACKAGE_DIMENSION",{placeholder:"width x length x height",value:"", width:TextWidth, editable:true}),
 
 														new sap.m.Label({text:"Delivery Confirmation",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_DELIVERY_CONFIRMATION",{placeholder:"",value:"", width:TextWidth, editable:true}),
@@ -321,7 +327,9 @@
 														new sap.m.Input("EMP_SIGNATURE_REQUIRED",{placeholder:"",value:"", width:TextWidth, editable:true}),
 
 														new sap.m.Label({text:"Order Number",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_ORDER_NUMBER",{placeholder:"",value:"", width:TextWidth, editable:true}),
+														new sap.m.Input("EMP_ORDER_NUMBER",{placeholder:"",value:"", width:TextWidth,
+															type: "Number",
+															editable:true}),
 
 														new sap.m.Label({text:"Shipping Cost",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_SHIPPING_COST",{placeholder:"",value:"", width:TextWidth, editable:true}),
@@ -545,16 +553,23 @@
 						// actual search field
 						new sap.m.SearchField("SEARCHFIELD_DISPLAY_OUTLET",{
 							width: "99%",
-							liveChange: function(oEvt){
+							change: function(oEvt){
 								var lv_search_val = oEvt.getSource().getValue().trim();
 								if(lv_search_val == ""){
 									ui("DISPLAY_BP_TABLE").setVisible(false);
 								}
+								else{
+									displayBp._get_data(lv_search_val);
+								}
+								//if(lv_search_val == createBP().createBPdetails.DELIVERY_ID){
+								//alert("123");
+							//}
 							},
 							placeholder: "Search...",
 							search: function(oEvent){
-								var lv_searchval = oEvent.getSource().getValue().trim();
-								displayBp._get_data(lv_searchval);
+							//	var lv_searchval = oEvent.getSource().getValue().trim();
+							//	displayBp._get_data(lv_searchval);
+							
 							},
 						})
 					],
@@ -585,7 +600,7 @@
 						var lv_bind = oEvt.getParameters().rowBindingContext;
 						
 						if(lv_bind != undefined){
-							var lv_bp_id = oEvt.getParameters().rowBindingContext.getProperty("BIZPART_ID");
+							var lv_bp_id = oEvt.getParameters().rowBindingContext.getProperty("DELIVERY_ID");
 							if(lv_bp_id){
 								screenMode._display(lv_bp_id);
 							}
@@ -594,26 +609,133 @@
 					},
 					columns: [
 					
-						new sap.ui.table.Column({label:new sap.m.Text({text:"Business Partner ID"}),
+						new sap.ui.table.Column({label:new sap.m.Text({text:"DELIVERY_ID"}),
+							width:"80px",
+							sortProperty:"DELIVERY_ID",
+							filterProperty:"DELIVERY_ID",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{DELIVERY_ID}",maxLines:1}),
+						}),
+						new sap.ui.table.Column({label:new sap.m.Text({text:"DELIVERY ADDRESS"}),
+							width:"40%",
+							sortProperty:"DELIVERY_ADDRESS",
+							filterProperty:"DELIVERY_ADDRESS",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{DELIVERY_ADDRESS}",tooltip:"{DELIVERY_ADDRESS}",maxLines:1}),
+						}),
+						new sap.ui.table.Column({label:new sap.m.Text({text:"CONTACT NAME"}),
+							width:"40%",
+							sortProperty:"EMP_NAME",
+							filterProperty:"EMP_NAME",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_NAME}",tooltip:"{EMP_NAME}",maxLines:1}),
+						}),
+						new sap.ui.table.Column({label:new sap.m.Text({text:"CONTACT PHONE"}),
 							width:"20%",
-							sortProperty:"BIZPART_ID",
-							filterProperty:"BIZPART_ID",
+							sortProperty:"EMP_PHONE",
+							filterProperty:"EMP_PHONE",
 							autoResizable:true,
-							template:new sap.m.Text({text:"{BIZPART_ID}",maxLines:1}),
-						}),
-						new sap.ui.table.Column({label:new sap.m.Text({text:"Business Partner Name"}),
-							width:"40%",
-							sortProperty:"NAME1",
-							filterProperty:"NAME1",
+							template:new sap.m.Text({text:"{EMP_PHONE}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"EMAIL"}),
+							width:"20%",
+							sortProperty:"EMP_EMAIL",
+							filterProperty:"EMP_EMAIL",
 							autoResizable:true,
-							template:new sap.m.Text({text:"{NAME1}",tooltip:"{NAME1}",maxLines:1}),
-						}),
-						new sap.ui.table.Column({label:new sap.m.Text({text:"External Partner"}),
-							width:"40%",
-							sortProperty:"EXT_PARTNER",
-							filterProperty:"EXT_PARTNER",
+							template:new sap.m.Text({text:"{EMP_EMAIL}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"DELIVERY DATE"}),
+							width:"20%",
+							sortProperty:"EMP_DELIVERY_DATE",
+							filterProperty:"EMP_DELIVERY_DATE",
 							autoResizable:true,
-							template:new sap.m.Text({text:"{EXT_PARTNER}",tooltip:"{EXT_PARTNER}",maxLines:1}),
+							template:new sap.m.Text({text:"{EMP_DELIVERY_DATE}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"DELIVERY TIME"}),
+							width:"20%",
+							sortProperty:"EMP_DELIVERY_TIME",
+							filterProperty:"EMP_DELIVERY_TIME",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_DELIVERY_TIME}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"DELIVERY INSTRUCTION"}),
+							width:"20%",
+							sortProperty:"EMP_DELIVERY_INSTRUCTION",
+							filterProperty:"EMP_DELIVERY_INSTRUCTION",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_DELIVERY_INSTRUCTION}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"SHIPPING METHOD"}),
+							width:"20%",
+							sortProperty:"EMP_SHIPPING_METHOD",
+							filterProperty:"EMP_SHIPPING_METHOD",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_SHIPPING_METHOD}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"SHIPPING CARRIER"}),
+							width:"20%",
+							sortProperty:"EMP_SHIPPING_CARRIER",
+							filterProperty:"EMP_SHIPPING_CARRIER",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_SHIPPING_CARRIER}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"TRACKING NUMBER"}),
+							width:"20%",
+							sortProperty:"EMP_TRACKING_NUMBER",
+							filterProperty:"EMP_TRACKING_NUMBER",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_TRACKING_NUMBER}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"PACKAGE WEIGHT"}),
+							width:"20%",
+							sortProperty:"EMP_PACKAGE_WEIGHT",
+							filterProperty:"EMP_PACKAGE_WEIGHT",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_PACKAGE_WEIGHT}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"PACKAGE DIMENSION"}),
+							width:"20%",
+							sortProperty:"EMP_PACKAGE_DIMENSION",
+							filterProperty:"EMP_PACKAGE_DIMENSION",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_PACKAGE_DIMENSION}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"DELIVERY CONFIRMATION"}),
+							width:"20%",
+							sortProperty:"EMP_DELIVERY_CONFIRMATION",
+							filterProperty:"EMP_DELIVERY_CONFIRMATION",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_DELIVERY_CONFIRMATION}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"SIGNATURE REQUIRED"}),
+							width:"20%",
+							sortProperty:"EMP_SIGNATURE_REQUIRED",
+							filterProperty:"EMP_SIGNATURE_REQUIRED",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_SIGNATURE_REQUIRED}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"ORDER NUMBER"}),
+							width:"20%",
+							sortProperty:"EMP_ORDER_NUMBER",
+							filterProperty:"EMP_ORDER_NUMBER",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_ORDER_NUMBER}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"SHIPPING COST"}),
+							width:"20%",
+							sortProperty:"EMP_SHIPPING_COST",
+							filterProperty:"EMP_SHIPPING_COST",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_SHIPPING_COST}",maxLines:1}),
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"INSURANCE"}),
+							width:"20%",
+							sortProperty:"EMP_INSURANCE",
+							filterProperty:"EMP_INSURANCE",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_INSURANCE}",maxLines:1}),
+						
+
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"CUSTOMS INFO"}),
+							width:"20%",
+							sortProperty:"EMP_CUSTOMS_INFO",
+							filterProperty:"EMP_CUSTOMS_INFO",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_CUSTOMS_INFO}",maxLines:1}),
+
+							
+						}),new sap.ui.table.Column({label:new sap.m.Text({text:"ORDER STATUS"}),
+							width:"20%",
+							sortProperty:"EMP_ORDER_STATUS",
+							filterProperty:"EMP_ORDER_STATUS",
+							autoResizable:true,
+							template:new sap.m.Text({text:"{EMP_ORDER_STATUS}",maxLines:1}),
 						}),
 						
 					]

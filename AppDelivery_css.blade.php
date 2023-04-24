@@ -64,7 +64,13 @@ pointer-events: none
 		font-family: Arial;
 
     }
-
-  
+.columns{
+	width: 70%;
+}
+.sapMSlt.sapMSltReadonly {
+		border-color: #ccc;
+		background: transparent;
+		border: 1px transparent;
+	}
 </style>
 </style>

@@ -1,5 +1,5 @@
 @extends('global_template') 
-@section('title', 'Business Partner Management')
+@section('title', 'Delivery - APPDEV')
 
 @section('content')
 
@@ -16,7 +16,7 @@
     function warning_notification (message) {
 	
     return new sap.m.MessageToast.show(message, {
-        duration: 400,                  // default
+        duration: 600,                  // default
         my: "center center",             // default
         at: "center center",             // default
         of: window,                      // default
@@ -38,7 +38,7 @@
 function proceed_notification (message) {
 	
     return new sap.m.MessageToast.show(message, {
-        duration: 400,                  // default
+        duration: 600,                  // default
         my: "center center",             // default
         at: "center center",             // default
         of: window,                      // default
