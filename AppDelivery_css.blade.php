@@ -1,18 +1,32 @@
 <style>
-
 .sapMInputBaseReadonly .sapMInputBaseContentWrapper {
     border-color: transparent;
     background: none;
     background-color: transparent;
 	border: 1px transparent;
 }
-
 #DELIVERY_ID {
-
 }
 @font-face {
 font-family: 'Road Rage';
 src: local('Road Rage'), local('Road Rage'), url('Road Rage.otf') format('otf');
+	}
+	.sapMIBar.sapMHeader-CTX{
+		background-color: #990000;
+
+	}
+	#__label1-bdi{
+		color: white;
+    }
+	#__label2-bdi{
+		color: white
+	}
+	.sapUiSizeCompact .sapMBtnIcon{
+		color: white;
+	}
+	.sapUxAPObjectPageHeaderIdentifier{
+		background-color: #990000;
+
 	}
 	
 	.class_label_padding{
@@ -20,11 +34,24 @@ src: local('Road Rage'), local('Road Rage'), url('Road Rage.otf') format('otf');
 		font-family: Arial;
 		font-weight: bolder;
 		color: white;
-       background-color: #7e98ba;
+       background-color: #FABC41;
 	}
 	.class_input{
 		border: 6vw;
 		border-color: red;
+	}
+	.sapMBreadcrumbs .sapMBreadcrumbsCurrentLocation  {
+		color: black;
+	}
+	.sapMBreadcrumbs .sapMLnk{
+		color: black;
+		text-decoration: none;
+
+	}
+	.sapMBreadcrumbs .sapMLnk:hover{
+		opacity: 0.8;
+		text-decoration: none;
+
 	}
 /** table */
 .sapUiLocalBusyIndicator:focus:after {
@@ -46,9 +73,9 @@ pointer-events: none
 	font-size: 50px;
 }
 .sapUiSizeCompact {
-	background-color: #7e98ba;
+	background-color: white;
 	border:none;
-	color: white;
+	color: black;
 }
 .menu_title{
 	color: red;
@@ -62,7 +89,6 @@ pointer-events: none
 		font-weight: bolder;
 		font-size: 70px;
 		font-family: Arial;
-
     }
 .columns{
 	width: 70%;

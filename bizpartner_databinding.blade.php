@@ -1,5 +1,4 @@
 <script>
-
 	//let ID = ui("DELIVERY_ID").getValue();
     	var bizData = [
 		{
@@ -28,7 +27,6 @@
 		
 		
 	];
-
 	const bpDataOrganizer = {
 		_filteredById : function(id){
 			filteredBP = [];
@@ -55,19 +53,17 @@
 						bp_id.EMP_DELIVERY_TIME     	= ui('EMP_DELIVERY_TIME').getValue().trim();
 						bp_id.EMP_DELIVERY_INSTRUCTION    		= ui('EMP_DELIVERY_INSTRUCTION').getValue().trim();
 						bp_id.EMP_SHIPPING_METHOD    		= ui('EMP_SHIPPING_METHOD').getSelectedKey().trim();
-						bp_id.EMP_SHIPPING_CARRIER    		= ui('EMP_SHIPPING_CARRIER').getValue().trim();
+						bp_id.EMP_SHIPPING_CARRIER    		= ui('EMP_SHIPPING_CARRIER').getSelectedKey().trim();
 						bp_id.EMP_TRACKING_NUMBER    		= ui('EMP_TRACKING_NUMBER').getValue().trim();
 						bp_id.EMP_PACKAGE_WEIGHT    		= ui('EMP_PACKAGE_WEIGHT').getValue().trim();
 						bp_id.EMP_PACKAGE_DIMENSION    		= ui('EMP_PACKAGE_DIMENSION').getValue().trim();
 						bp_id.EMP_DELIVERY_CONFIRMATION    		= ui('EMP_DELIVERY_CONFIRMATION').getValue().trim();
-						bp_id.EMP_SIGNATURE_REQUIRED    		= ui('EMP_SIGNATURE_REQUIRED').getValue().trim();
+						bp_id.EMP_SIGNATURE_REQUIRED    		= ui('EMP_SIGNATURE_REQUIRED').getSelectedKey().trim();
 						bp_id.EMP_ORDER_NUMBER    		= ui('EMP_ORDER_NUMBER').getValue().trim();
 						bp_id.EMP_SHIPPING_COST    		= ui('EMP_SHIPPING_COST').getValue().trim();
 						bp_id.EMP_INSURANCE    		= ui('EMP_INSURANCE').getValue().trim();
 						bp_id.EMP_CUSTOMS_INFO    		= ui('EMP_CUSTOMS_INFO').getValue().trim();
-						bp_id.EMP_ORDER_STATUS    		= ui('EMP_ORDER_STATUS').getValue().trim();
-
-
+						bp_id.EMP_ORDER_STATUS    		= ui('EMP_ORDER_STATUS').getSelectedKey().trim();
 						
 				}
 				
@@ -83,12 +79,9 @@
 					existID = true;
 				}
 			}
-
 			return existID;
-
 		}
 	}
-
 	const screenMode = {
 		_id : "",
 		_title : "",
@@ -102,12 +95,10 @@
 			ui("CREATE_BP_SAVE_BTN").setVisible(true);
 			ui("CREATE_BP_EDIT_BTN").setVisible(false);
 			ui("CREATE_BP_CANCEL_BTN").setVisible(false);
-
 			//title and crumbs
 			///ui('BP_TITLE').setText(bp_title);
 			///ui('CREATE_BP_BRDCRMS').setCurrentLocationText(bp_title);
 			//ui("PANEL_FORM").setTitle("New Business Partner");
-
 			//Fields
 			//ui('BP_TYPE_INFO').setEditable(true);
 			//ui('BP_TYPE_REGNAME').setEditable(true);
@@ -115,7 +106,6 @@
 			//ui('BP_TYPE_EXTPARTNER').setEditable(true);
 			//ui('INPUT_CONTROL_INFO_SOURCE_SYS').setEditable(true);
 			
-
 			go_App_Right.to('CREATE_BP_PAGE');
 		},
 		_edit : function(){
@@ -124,7 +114,6 @@
 			ui("CREATE_BP_SAVE_BTN").setVisible(true);
 			ui("CREATE_BP_EDIT_BTN").setVisible(false);
 			ui("CREATE_BP_CANCEL_BTN").setVisible(true);
-
 			//Fields
 			/*
 			ui('BP_TYPE_INFO').setEditable(true);
@@ -144,8 +133,6 @@
 			ui("CREATE_BP_SAVE_BTN").setVisible(false);
 			ui("CREATE_BP_EDIT_BTN").setVisible(true);
 			ui("CREATE_BP_CANCEL_BTN").setVisible(false);
-
-
 			//fields with value
 			let data = bpDataOrganizer._filteredById(id);
 			if(data.length > 0){
@@ -158,25 +145,23 @@
 				ui('EMP_DELIVERY_TIME').setValue(data[0].EMP_DELIVERY_TIME).setEditable(false);
 				ui('EMP_DELIVERY_INSTRUCTION').setValue(data[0].EMP_DELIVERY_INSTRUCTION).setEditable(false);
 				ui('EMP_SHIPPING_METHOD').setSelectedKey(data[0].EMP_SHIPPING_METHOD).setEditable(false);
-				ui('EMP_SHIPPING_CARRIER').setValue(data[0].EMP_SHIPPING_CARRIER).setEditable(false);
+				ui('EMP_SHIPPING_CARRIER').setSelectedKey(data[0].EMP_SHIPPING_CARRIER).setEditable(false);
 				ui('EMP_TRACKING_NUMBER').setValue(data[0].EMP_TRACKING_NUMBER).setEditable(false);
 				ui('EMP_PACKAGE_WEIGHT').setValue(data[0].EMP_PACKAGE_WEIGHT).setEditable(false);
 				ui('EMP_PACKAGE_DIMENSION').setValue(data[0].EMP_PACKAGE_DIMENSION).setEditable(false);
 				ui('EMP_DELIVERY_CONFIRMATION').setValue(data[0].EMP_DELIVERY_CONFIRMATION).setEditable(false);
-				ui('EMP_SIGNATURE_REQUIRED').setValue(data[0].EMP_SIGNATURE_REQUIRED).setEditable(false);
+				ui('EMP_SIGNATURE_REQUIRED').setSelectedKey(data[0].EMP_SIGNATURE_REQUIRED).setEditable(false);
 				ui('EMP_ORDER_NUMBER').setValue(data[0].EMP_ORDER_NUMBER).setEditable(false);
 				ui('EMP_SHIPPING_COST').setValue(data[0].EMP_SHIPPING_COST).setEditable(false);
 				ui('EMP_INSURANCE').setValue(data[0].EMP_INSURANCE).setEditable(false);
 				ui('EMP_CUSTOMS_INFO').setValue(data[0].EMP_CUSTOMS_INFO).setEditable(false);
-				ui('EMP_ORDER_STATUS').setValue(data[0].EMP_ORDER_STATUS).setEditable(false);
-
+				ui('EMP_ORDER_STATUS').setSelectedKey(data[0].EMP_ORDER_STATUS).setEditable(false);
 			
 			
 				//title and crumbs
 				//ui('BP_TITLE').setText(bp_title);
 				//ui('CREATE_BP_BRDCRMS').setCurrentLocationText(bp_title);
 				//ui("PANEL_FORM").setTitle("Business Partner ID "+"("+data[0].BIZPART_ID+")");
-
 				go_App_Right.to('CREATE_BP_PAGE');
 			}			
 		},
@@ -202,8 +187,6 @@
 		//open modal after save button
 		proceed_notification("Directing to Table Data....");
 				go_App_Right.to('PAGE_BP_LISTING');
-
-
     let createBPdetails = {
        
 		
@@ -216,18 +199,17 @@
         EMP_DELIVERY_TIME : ui("EMP_DELIVERY_TIME").getValue().trim(),
         EMP_DELIVERY_INSTRUCTION : ui("EMP_DELIVERY_INSTRUCTION").getValue().trim(),
         EMP_SHIPPING_METHOD: ui("EMP_SHIPPING_METHOD").getSelectedKey().trim(),
-        EMP_SHIPPING_CARRIER : ui("EMP_SHIPPING_CARRIER").getValue().trim(),
+        EMP_SHIPPING_CARRIER : ui("EMP_SHIPPING_CARRIER").getSelectedKey().trim(),
         EMP_TRACKING_NUMBER : ui("EMP_TRACKING_NUMBER").getValue().trim(),
         EMP_PACKAGE_WEIGHT : ui("EMP_PACKAGE_WEIGHT").getValue().trim(),
         EMP_PACKAGE_DIMENSION: ui("EMP_PACKAGE_DIMENSION").getValue().trim(),
         EMP_DELIVERY_CONFIRMATION: ui("EMP_DELIVERY_CONFIRMATION").getValue().trim(),
-        EMP_SIGNATURE_REQUIRED: ui("EMP_SIGNATURE_REQUIRED").getValue().trim(),
+        EMP_SIGNATURE_REQUIRED: ui("EMP_SIGNATURE_REQUIRED").getSelectedKey().trim(),
         EMP_ORDER_NUMBER: ui("EMP_ORDER_NUMBER").getValue().trim(),
         EMP_SHIPPING_COST: ui("EMP_SHIPPING_COST").getValue().trim(),
         EMP_INSURANCE: ui("EMP_INSURANCE").getValue().trim(),
         EMP_CUSTOMS_INFO: ui("EMP_CUSTOMS_INFO").getValue().trim(),
-        EMP_ORDER_STATUS: ui("EMP_ORDER_STATUS").getValue().trim(),
-
+        EMP_ORDER_STATUS: ui("EMP_ORDER_STATUS").getSelectedKey().trim(),
     };
 	/** SEND INPUTTED DATA to TABLE DATA */
 	//if(createBPdetails.DELIVERY_ID!= ui("DELIVERY_ID").getValue()){
@@ -238,18 +220,12 @@
 	
     
     
-
 }
-
 const onEdit = () => {
-
 	ui("CREATE_BP_SAVE_BTN").setVisible(true);
 	ui("CREATE_BP_EDIT_BTN").setVisible(false);
 	ui("CREATE_BP_CANCEL_BTN").setVisible(true);
-
-
     ui("DELIVERY_ID").setEditable(false);
-
     ui("DELIVERY_ADDRESS").setEditable(true);
     ui("EMP_NAME").setEditable(true);
     ui("EMP_PHONE").setEditable(true);
@@ -270,16 +246,11 @@ const onEdit = () => {
     ui("EMP_CUSTOMS_INFO").setEditable(true);
     ui("EMP_ORDER_STATUS").setEditable(true);
 }
-
-
 const onCancel = () => {
-
 	ui("CREATE_BP_SAVE_BTN").setVisible(false);
 	ui("CREATE_BP_EDIT_BTN").setVisible(true);
 	ui("CREATE_BP_CANCEL_BTN").setVisible(false);
-
 	ui("DELIVERY_ID").setEditable(false);
-
 ui("DELIVERY_ADDRESS").setEditable(false);
 ui("EMP_NAME").setEditable(false);
 ui("EMP_PHONE").setEditable(false);
@@ -288,30 +259,25 @@ ui("EMP_DELIVERY_DATE").setEditable(false);
 ui("EMP_DELIVERY_TIME").setEditable(false);
 ui("EMP_DELIVERY_INSTRUCTION").setEditable(false);
 ui("EMP_SHIPPING_METHOD").setSelectedKey(false);
-ui("EMP_SHIPPING_CARRIER").setEditable(false);
+ui("EMP_SHIPPING_CARRIER").setSelectedKey(false);
 ui("EMP_TRACKING_NUMBER").setEditable(false);
 ui("EMP_PACKAGE_WEIGHT").setEditable(false);
 ui("EMP_PACKAGE_DIMENSION").setEditable(false);
 ui("EMP_DELIVERY_CONFIRMATION").setEditable(false);
-ui("EMP_SIGNATURE_REQUIRED").setEditable(false);
+ui("EMP_SIGNATURE_REQUIRED").setSelectedKey(false);
 ui("EMP_ORDER_NUMBER").setEditable(false);
 ui("EMP_SHIPPING_COST").setEditable(false);
 ui("EMP_INSURANCE").setEditable(false);
 ui("EMP_CUSTOMS_INFO").setEditable(false);
-ui("EMP_ORDER_STATUS").setEditable(false);
+ui("EMP_ORDER_STATUS").setSelectedKey(false);
 }
-
 function showBusyDialog(message){
 return new sap.m.BusyDialog({text : message});
 }
-
-
-
-
-
 const createBP = () => {
 		let busyDialog = showBusyDialog("Please wait loading..");
 		busyDialog.open();
+
 		let data_for_general = {
 			DELIVERY_ID: ui("DELIVERY_ID").getValue().trim(),
         DELIVERY_ADDRESS : ui("DELIVERY_ADDRESS").getValue().trim(),
@@ -322,17 +288,17 @@ const createBP = () => {
         EMP_DELIVERY_TIME : ui("EMP_DELIVERY_TIME").getValue().trim(),
         EMP_DELIVERY_INSTRUCTION : ui("EMP_DELIVERY_INSTRUCTION").getValue().trim(),
         EMP_SHIPPING_METHOD: ui("EMP_SHIPPING_METHOD").getSelectedKey().trim(),
-        EMP_SHIPPING_CARRIER : ui("EMP_SHIPPING_CARRIER").getValue().trim(),
+        EMP_SHIPPING_CARRIER : ui("EMP_SHIPPING_CARRIER").getSelectedKey().trim(),
         EMP_TRACKING_NUMBER : ui("EMP_TRACKING_NUMBER").getValue().trim(),
         EMP_PACKAGE_WEIGHT : ui("EMP_PACKAGE_WEIGHT").getValue().trim(),
         EMP_PACKAGE_DIMENSION: ui("EMP_PACKAGE_DIMENSION").getValue().trim(),
         EMP_DELIVERY_CONFIRMATION: ui("EMP_DELIVERY_CONFIRMATION").getValue().trim(),
-        EMP_SIGNATURE_REQUIRED: ui("EMP_SIGNATURE_REQUIRED").getValue().trim(),
+        EMP_SIGNATURE_REQUIRED: ui("EMP_SIGNATURE_REQUIRED").getSelectedKey().trim(),
         EMP_ORDER_NUMBER: ui("EMP_ORDER_NUMBER").getValue().trim(),
         EMP_SHIPPING_COST: ui("EMP_SHIPPING_COST").getValue().trim(),
         EMP_INSURANCE: ui("EMP_INSURANCE").getValue().trim(),
         EMP_CUSTOMS_INFO: ui("EMP_CUSTOMS_INFO").getValue().trim(),
-        EMP_ORDER_STATUS: ui("EMP_ORDER_STATUS").getValue().trim(),
+        EMP_ORDER_STATUS: ui("EMP_ORDER_STATUS").getSelectedKey().trim(),
    		};
 		//add new data to array
 		bizData.push(data_for_general);
@@ -357,10 +323,8 @@ const createBP = () => {
 		});*/
         
     }
-
 	
 //Table Binding:
-
 			
 const displayBp =  {
 		
@@ -390,7 +354,6 @@ const displayBp =  {
 			
 		}		
 	};
-
 const listingBp = {
 		_getData : function(data){
 			ui("BP_LISTING_TABLE").unbindRows();
@@ -436,8 +399,6 @@ const listingBp = {
 			})
 		]
 	}).addStyleClass('sapUiSizeCompact');
-
-
 	const emptyFields = () => {
 		ui('DELIVERY_ID').setValue("").setEditable(true);
 		ui('DELIVERY_ADDRESS').setValue("").setEditable(true);
@@ -448,24 +409,17 @@ const listingBp = {
 		ui('EMP_DELIVERY_TIME').setValue("").setEditable(true);
 		ui('EMP_DELIVERY_INSTRUCTION').setValue("").setEditable(true);
 		ui('EMP_SHIPPING_METHOD').setSelectedKey("").setEditable(true);
-		ui('EMP_SHIPPING_CARRIER').setValue("").setEditable(true);
+		ui('EMP_SHIPPING_CARRIER').setSelectedKey("").setEditable(true);
 		ui('EMP_TRACKING_NUMBER').setValue("").setEditable(true);
 		ui('EMP_PACKAGE_WEIGHT').setValue("").setEditable(true);
 		ui('EMP_PACKAGE_DIMENSION').setValue("").setEditable(true);
 		ui('EMP_DELIVERY_CONFIRMATION').setValue("").setEditable(true);
-		ui('EMP_SIGNATURE_REQUIRED').setValue("").setEditable(true);
+		ui('EMP_SIGNATURE_REQUIRED').setSelectedKey("").setEditable(true);
 		ui('EMP_ORDER_NUMBER').setValue("").setEditable(true);
 		ui('EMP_SHIPPING_COST').setValue("").setEditable(true);
 		ui('EMP_INSURANCE').setValue("").setEditable(true);
 		ui('EMP_CUSTOMS_INFO').setValue("").setEditable(true);
-		ui('EMP_ORDER_STATUS').setValue("").setEditable(true);
-
+		ui('EMP_ORDER_STATUS').setSelectedKey("").setEditable(true);
 	}
-
-
-
 	
-
-
-
     </script>

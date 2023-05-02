@@ -33,32 +33,23 @@
 			type: sap.m.ListType.Active,
 			press:function(oEvent){
 				
-
              let menu =  oEvent.getSource().getBindingContext().getProperty('funct');
 				switch(menu){
 					case "create_delivery" :
 						go_App_Right.to('CREATE_BP_PAGE');
-
 						//after click DELIVERY-button > empty input fields
 						//emptyFields();
 						
 						screenMode._create();
-
 					break;
 					case "display_delivery" :
 						go_App_Right.to('BP_PAGE_DISPLAY');
-
 					break;
 					case "delivery_listing" :
-
 						listingBp._getData(bizData);
 						go_App_Right.to('PAGE_BP_LISTING');
 					break;
-					case "BP_TEST" :
-
-						go_App_Right.to('TEST_PAGE');
-					break;
-
+					
 				}
 			}
 		});
@@ -69,7 +60,6 @@
                     icon    : "sap-icon://add-product",
                     visible : true,
 					funct   :"create_delivery"
-
 		
                 },
                 {
@@ -77,23 +67,15 @@
                     icon    : "sap-icon://business-card",
                     visible : true,
 					funct   :"display_delivery"
-
                 },
                 {
                     title   : "Business Delivery Table",
                     icon    : "sap-icon://checklist-item",
                     visible : true,
 					funct   :"delivery_listing"
-				},
-				{
-                    title   : "Test",
-                    icon    : "sap-icon://checklist-item",
-					funct  	: "BP_TEST",
-                    visible : true
-                }
+				}
                 
         ];
-
         let model = new sap.ui.model.json.JSONModel();
 			model.setSizeLimit(gt_list.length);
 			model.setData(gt_list);
@@ -106,9 +88,7 @@
 		page.addContent(menuList);		
 		return page;
     	
-
 	}
-
 	
     function createBizPage(){
         let page  = new sap.m.Page("CREATE_BP_PAGE",{}).addStyleClass('sapUiSizeCompact');
@@ -165,9 +145,9 @@
 					actions:[
                         new sap.uxap.ObjectPageHeaderActionButton("CREATE_BP_SAVE_BTN",{
                             icon: "sap-icon://save",
+							
 							press: function(){
                             								
-
 							let id = ui("DELIVERY_ID").getValue().trim();
 							if(id){
 								if(screenMode._mode == "create"){
@@ -177,6 +157,8 @@
 								    }
 									else{
 										createBP();
+										go_App_Right.to('PAGE_BP_LISTING');
+
 								
 									}
 								}
@@ -187,7 +169,6 @@
 							else{
 								warning_notification("DELIVERY ID IS REQUIRED");
 							}
-
 			
 						
                             }
@@ -232,7 +213,6 @@
                                                     maxContainerCols:2,
 													labelMinWidth:130,
 													content:[
-
 														/* LEFT PANEL */
 														
                                                         new sap.ui.core.Title("GENERAL_INFO_TITLE1",{text:""}),
@@ -241,36 +221,28 @@
 															width:TextWidth,
 															type: "Number"
 														}),	
-
                                                         new sap.m.Label({text:"Delivery Address",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("DELIVERY_ADDRESS",{
 															placeholder:"", 
 															width:TextWidth, 
 															
 														}),														
-
                                                         new sap.m.Label({text:"Contact Name",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_NAME",{placeholder:"",value:"", width:TextWidth, editable:true}),
-
                                                         new sap.m.Label({text:"Contact Phone Number",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_PHONE",{placeholder:"",value:"", width:TextWidth, editable:true}),
-
+														new sap.m.Input("EMP_PHONE",{placeholder:"",value:"", width:TextWidth, editable:true,  type:"Number"}),
 														new sap.m.Label({text:"Email Address",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_EMAIL",{placeholder:"",value:"", width:TextWidth, editable:true}),
-
 														new sap.m.Label({text:"Delivery Date",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_DELIVERY_DATE",{placeholder:"",value:"", width:TextWidth,
 															type: "Date",
 															 editable:true}),
-
 														new sap.m.Label({text:"Delivery Time",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_DELIVERY_TIME",{placeholder:"",value:"", width:TextWidth,
 															type: "Time",
 															 editable:true}),
-
 														new sap.m.Label({text:"Delivery Instructions",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_DELIVERY_INSTRUCTION",{placeholder:"",value:"", width:TextWidth, editable:true}),
-
 														new sap.m.Label({text:"Shipping Method",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Select("EMP_SHIPPING_METHOD",{
 															items : [
@@ -292,64 +264,101 @@
 																	icon: "sap-icon://paid-leave",
 																	additionalText:"GCASH",
 																})	
-
 															]
 															}),
-
-
-
 														new sap.m.Label({text:"Shipping Carrier",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_SHIPPING_CARRIER",{placeholder:"",value:"", width:TextWidth, editable:true}),
-                                                        
+														new sap.m.Select("EMP_SHIPPING_CARRIER",{
+															items : [
+																new sap.ui.core.ListItem({
+																	text:"FedEx",
+																	key: "FedEx",
+																	icon: "sap-icon://Netweaver-business-client",
+																	additionalText:"FedEx",
+																}),	
+																new sap.ui.core.ListItem({
+																	text:"LBC",
+																	key: "LBC",
+																	icon: "sap-icon://Netweaver-business-client",
+																	additionalText:"LBC",
+																}),	
+																new sap.ui.core.ListItem({
+																	text:"J&T",
+																	key: "J&T",
+																	icon: "sap-icon://Netweaver-business-client",
+																	additionalText:"J&T",
+																}),
+																new sap.ui.core.ListItem({
+																	text:"Ninja Van",
+																	key: "Ninja Van",
+																	icon: "sap-icon://Netweaver-business-client",
+																	additionalText:"Ninja Van",
+																})		
+															]
+															}),                                                        
                                                         new sap.m.Label({text:"Tracking Number",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_TRACKING_NUMBER",{placeholder:"",value:"", width:TextWidth,
 															type: "Number",
 															 editable:true}),
-
 	
 														
 														/** RIGHT PANEL **/
-
-
-
                                                         new sap.ui.core.Title("GENERAL_INFO_TITLE2",{text:""}),
-
 														new sap.m.Label({text:"Package Weight",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_PACKAGE_WEIGHT",{placeholder:"kg",value:"", width:TextWidth, editable:true}),
+														new sap.m.Input("EMP_PACKAGE_WEIGHT",{placeholder:"kg",value:"", width:TextWidth, editable:true,  type:"Number"}),
  
 														new sap.m.Label({text:"Package Dimensions",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_PACKAGE_DIMENSION",{placeholder:"width x length x height",value:"", width:TextWidth, editable:true}),
-
 														new sap.m.Label({text:"Delivery Confirmation",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_DELIVERY_CONFIRMATION",{placeholder:"",value:"", width:TextWidth, editable:true}),
-
 														new sap.m.Label({text:"Signature Required",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_SIGNATURE_REQUIRED",{placeholder:"",value:"", width:TextWidth, editable:true}),
-
-														new sap.m.Label({text:"Order Number",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Select("EMP_SIGNATURE_REQUIRED",{
+															items : [
+																new sap.ui.core.ListItem({
+																	text:"yes",
+																	key: "yes",
+																	icon: "sap-icon://accept",
+																	additionalText:"yes",
+																}),	
+																new sap.ui.core.ListItem({
+																	text:"no",
+																	key: "no",
+																	icon: "sap-icon://error",
+																	additionalText:"no",
+																})
+															]
+															}),														new sap.m.Label({text:"Order Number",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_ORDER_NUMBER",{placeholder:"",value:"", width:TextWidth,
 															type: "Number",
 															editable:true}),
-
 														new sap.m.Label({text:"Shipping Cost",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_SHIPPING_COST",{placeholder:"",value:"", width:TextWidth, editable:true}),
-
 														new sap.m.Label({text:"Insurance",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_INSURANCE",{placeholder:"",value:"", width:TextWidth, editable:true}),
-
+														new sap.m.Input("EMP_INSURANCE",{placeholder:"",value:"", width:TextWidth, editable:true, type:"Number"}),
 														new sap.m.Label({text:"Customs Information",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_CUSTOMS_INFO",{placeholder:"",value:"", width:TextWidth, editable:true}),
-
 														new sap.m.Label({text:"Order Status",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_ORDER_STATUS",{placeholder:"",value:"", width:TextWidth, editable:true}),
-
-
-
-
-
-
-                                                  
-
+														new sap.m.Select("EMP_ORDER_STATUS",{
+															items : [
+																new sap.ui.core.ListItem({
+																	text:"PARCEL COLLECT",
+																	key: "PARCEL COLLECT",
+																	icon: "sap-icon://inbox",
+																	additionalText:"PARCEL COLLECT",
+																}),	
+																new sap.ui.core.ListItem({
+																	text:"SHIPPING",
+																	key: "SHIPPING",
+																	icon: "sap-icon://shipping-status",
+																	additionalText:"SHIPPING",
+																}),	
+																new sap.ui.core.ListItem({
+																	text:"RECEIVED",
+																	key: "RECEIVED",
+																	icon: "sap-icon://activity-2",
+																	additionalText:"RECEIVED",
+																})	
+															]
+															}),                                                  
                                                         new sap.m.Label({text:"Deletion Flag",width:labelWidth}).addStyleClass('class_label_padding'),
 														new sap.m.Switch("CONTROL_INFO_DEL_FLAG",{state:true}),
                                                     ]
@@ -721,14 +730,12 @@
 							autoResizable:true,
 							template:new sap.m.Text({text:"{EMP_INSURANCE}",maxLines:1}),
 						
-
 						}),new sap.ui.table.Column({label:new sap.m.Text({text:"CUSTOMS INFO"}),
 							width:"20%",
 							sortProperty:"EMP_CUSTOMS_INFO",
 							filterProperty:"EMP_CUSTOMS_INFO",
 							autoResizable:true,
 							template:new sap.m.Text({text:"{EMP_CUSTOMS_INFO}",maxLines:1}),
-
 							
 						}),new sap.ui.table.Column({label:new sap.m.Text({text:"ORDER STATUS"}),
 							width:"20%",
@@ -749,9 +756,7 @@
 				return lv_Page;
 			}
 	function createListBP(){
-
 var lv_Page  = new sap.m.Page("PAGE_BP_LISTING",{}).addStyleClass('sapUiSizeCompact');
-
 var lv_header = new sap.m.Bar({
 	enableFlexBox: false,
 	contentLeft:[
@@ -805,8 +810,6 @@ var lv_crumbs = new sap.m.Breadcrumbs("LIST_BP_BRDCRMS",{
 		
 	]
 }).addStyleClass('breadcrumbs-padding');
-
-
 var lv_table = new sap.ui.table.Table("BP_LISTING_TABLE",{
 	visibleRowCountMode:"Auto",
 	selectionMode:"None",
@@ -887,21 +890,18 @@ var lv_table = new sap.ui.table.Table("BP_LISTING_TABLE",{
 			filterProperty:"EMP_DELIVERY_DATE",
 			template:new sap.m.Text({text:"{EMP_DELIVERY_DATE}",tooltip:"{EMP_DELIVERY_DATE}",maxLines:1}),
 		}),
-
 		new sap.ui.table.Column({label:new sap.m.Text({text:"DELIVERY TIME"}),
 			width:"150px",
 			sortProperty:"EMP_DELIVERY_TIME",
 			filterProperty:"EMP_DELIVERY_TIME",
 			template:new sap.m.Text({text:"{EMP_DELIVERY_TIME}",tooltip:"{EMP_DELIVERY_TIME}",maxLines:1}),
 		}),
-
 		new sap.ui.table.Column({label:new sap.m.Text({text:"DELIVERY INSTRUCTION"}),
 			width:"150px",
 			sortProperty:"EMP_DELIVERY_INSTRUCTION",
 			filterProperty:"EMP_DELIVERY_INSTRUCTION",
 			template:new sap.m.Text({text:"{EMP_DELIVERY_INSTRUCTION}",tooltip:"{EMP_DELIVERY_INSTRUCTION}",maxLines:1}),
 		}),
-
 		new sap.ui.table.Column({label:new sap.m.Text({text:"SHIPPING METHOD"}),
 			width:"150px",
 			sortProperty:"EMP_SHIPPING_METHOD",
@@ -976,15 +976,11 @@ var lv_table = new sap.ui.table.Table("BP_LISTING_TABLE",{
 		}),
 		
 	]
-
 });
-
 lv_Page.setCustomHeader(lv_header);
 lv_Page.addContent(lv_crumbs);
 lv_Page.addContent(lv_table);
-
-
 return lv_Page;
 }
 	
-</script>
+</script>	
