@@ -1,11 +1,39 @@
 <style>
+	/** SYSTEM */
 .sapMInputBaseReadonly .sapMInputBaseContentWrapper {
     border-color: transparent;
     background: none;
     background-color: transparent;
 	border: 1px transparent;
 }
+.sapUxAPObjectPageHeaderTitleTextWrappable{
+	color: white;
+	font-weight: bolder;
+	font-size: 25px;
+    filter: drop-shadow(1px 1px 2px black);
+}
+.sapUxAPObjectPageNavigation{
+	background : crystal;
+}
+.sapMPanelBGTranslucent{
+	background: crystal;
+}
+.sapUiSizeCompact .sapMInputBaseInner{
+	border: none;
+}
+.sapUiFormResLayout.sapUiFormBackgrTranslucent>div{
+	background-color: rgba(153,0,0,0.8)
+}
+Input{
+	border: 5px solid black;
+}
 #DELIVERY_ID {
+	border: none;
+}
+/*** ICONS */
+.icon-save{
+	background-color: red;
+	width: 50%;
 }
 @font-face {
 font-family: 'Road Rage';
@@ -13,7 +41,6 @@ src: local('Road Rage'), local('Road Rage'), url('Road Rage.otf') format('otf');
 	}
 	.sapMIBar.sapMHeader-CTX{
 		background-color: #990000;
-
 	}
 	#__label1-bdi{
 		color: white;
@@ -26,7 +53,6 @@ src: local('Road Rage'), local('Road Rage'), url('Road Rage.otf') format('otf');
 	}
 	.sapUxAPObjectPageHeaderIdentifier{
 		background-color: #990000;
-
 	}
 	
 	.class_label_padding{
@@ -34,7 +60,7 @@ src: local('Road Rage'), local('Road Rage'), url('Road Rage.otf') format('otf');
 		font-family: Arial;
 		font-weight: bolder;
 		color: white;
-       background-color: #FABC41;
+       background-color: transparent;
 	}
 	.class_input{
 		border: 6vw;
@@ -46,14 +72,37 @@ src: local('Road Rage'), local('Road Rage'), url('Road Rage.otf') format('otf');
 	.sapMBreadcrumbs .sapMLnk{
 		color: black;
 		text-decoration: none;
-
 	}
 	.sapMBreadcrumbs .sapMLnk:hover{
 		opacity: 0.8;
 		text-decoration: none;
-
 	}
+
+	/** Display Delivery Partner */
+	.sapMLabelTextWrapper{
+		color: white;
+	}
+	.sapMTB-Transparent-CTX{
+margin: 0 auto;
+	background-color: silver;
+	background: #990000;
+}
+.sapMTB-Transparent-CTX .sapMText{
+	color: white;
+}
 /** table */
+.sapUiTableHeaderDataCell {
+	background:#990000;
+}
+.sapUiTableHeaderDataCell:hover{
+	opacity: 0.6;
+}
+.sapUiTableHeaderDataCell .sapMText, .sapMColumnHeader .sapMText{
+	color: white;
+}
+.sapUiTableCell{
+
+}
 .sapUiLocalBusyIndicator:focus:after {
 content: "";
 position: absolute;
@@ -64,11 +113,7 @@ bottom: 1px;
 border: 2px solid transparent;
 pointer-events: none
 }
-.sapMTB-Transparent-CTX{
-	transform: translateX(30%);
-	background-color: silver;
-	background: cover;
-}
+
 .nav_list{
 	font-size: 50px;
 }
@@ -84,12 +129,17 @@ pointer-events: none
         background : #AA5656 ;
         width:50rem ;
         max-width : 50rem ;
-        opacity: 0.7 ;
+        opacity: 1 ;
 		color: white;
 		font-weight: bolder;
 		font-size: 70px;
 		font-family: Arial;
+		z-index: 99999;
+		filter: drop-shadow(2px 3px 4px black);
     }
+.body{
+	z-index: -999;
+}
 .columns{
 	width: 70%;
 }

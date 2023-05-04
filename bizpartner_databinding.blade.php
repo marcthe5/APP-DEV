@@ -57,7 +57,7 @@
 						bp_id.EMP_TRACKING_NUMBER    		= ui('EMP_TRACKING_NUMBER').getValue().trim();
 						bp_id.EMP_PACKAGE_WEIGHT    		= ui('EMP_PACKAGE_WEIGHT').getValue().trim();
 						bp_id.EMP_PACKAGE_DIMENSION    		= ui('EMP_PACKAGE_DIMENSION').getValue().trim();
-						bp_id.EMP_DELIVERY_CONFIRMATION    		= ui('EMP_DELIVERY_CONFIRMATION').getValue().trim();
+						bp_id.EMP_DELIVERY_CONFIRMATION    		= ui('EMP_DELIVERY_CONFIRMATION').getSelectedKey().trim();
 						bp_id.EMP_SIGNATURE_REQUIRED    		= ui('EMP_SIGNATURE_REQUIRED').getSelectedKey().trim();
 						bp_id.EMP_ORDER_NUMBER    		= ui('EMP_ORDER_NUMBER').getValue().trim();
 						bp_id.EMP_SHIPPING_COST    		= ui('EMP_SHIPPING_COST').getValue().trim();
@@ -149,7 +149,7 @@
 				ui('EMP_TRACKING_NUMBER').setValue(data[0].EMP_TRACKING_NUMBER).setEditable(false);
 				ui('EMP_PACKAGE_WEIGHT').setValue(data[0].EMP_PACKAGE_WEIGHT).setEditable(false);
 				ui('EMP_PACKAGE_DIMENSION').setValue(data[0].EMP_PACKAGE_DIMENSION).setEditable(false);
-				ui('EMP_DELIVERY_CONFIRMATION').setValue(data[0].EMP_DELIVERY_CONFIRMATION).setEditable(false);
+				ui('EMP_DELIVERY_CONFIRMATION').setSelectedKey(data[0].EMP_DELIVERY_CONFIRMATION).setEditable(false);
 				ui('EMP_SIGNATURE_REQUIRED').setSelectedKey(data[0].EMP_SIGNATURE_REQUIRED).setEditable(false);
 				ui('EMP_ORDER_NUMBER').setValue(data[0].EMP_ORDER_NUMBER).setEditable(false);
 				ui('EMP_SHIPPING_COST').setValue(data[0].EMP_SHIPPING_COST).setEditable(false);
@@ -203,7 +203,7 @@
         EMP_TRACKING_NUMBER : ui("EMP_TRACKING_NUMBER").getValue().trim(),
         EMP_PACKAGE_WEIGHT : ui("EMP_PACKAGE_WEIGHT").getValue().trim(),
         EMP_PACKAGE_DIMENSION: ui("EMP_PACKAGE_DIMENSION").getValue().trim(),
-        EMP_DELIVERY_CONFIRMATION: ui("EMP_DELIVERY_CONFIRMATION").getValue().trim(),
+        EMP_DELIVERY_CONFIRMATION: ui("EMP_DELIVERY_CONFIRMATION").getSelectedKey().trim(),
         EMP_SIGNATURE_REQUIRED: ui("EMP_SIGNATURE_REQUIRED").getSelectedKey().trim(),
         EMP_ORDER_NUMBER: ui("EMP_ORDER_NUMBER").getValue().trim(),
         EMP_SHIPPING_COST: ui("EMP_SHIPPING_COST").getValue().trim(),
@@ -263,7 +263,7 @@ ui("EMP_SHIPPING_CARRIER").setSelectedKey(false);
 ui("EMP_TRACKING_NUMBER").setEditable(false);
 ui("EMP_PACKAGE_WEIGHT").setEditable(false);
 ui("EMP_PACKAGE_DIMENSION").setEditable(false);
-ui("EMP_DELIVERY_CONFIRMATION").setEditable(false);
+ui("EMP_DELIVERY_CONFIRMATION").setSelectedKey(false);
 ui("EMP_SIGNATURE_REQUIRED").setSelectedKey(false);
 ui("EMP_ORDER_NUMBER").setEditable(false);
 ui("EMP_SHIPPING_COST").setEditable(false);
@@ -277,7 +277,6 @@ return new sap.m.BusyDialog({text : message});
 const createBP = () => {
 		let busyDialog = showBusyDialog("Please wait loading..");
 		busyDialog.open();
-
 		let data_for_general = {
 			DELIVERY_ID: ui("DELIVERY_ID").getValue().trim(),
         DELIVERY_ADDRESS : ui("DELIVERY_ADDRESS").getValue().trim(),
@@ -292,7 +291,7 @@ const createBP = () => {
         EMP_TRACKING_NUMBER : ui("EMP_TRACKING_NUMBER").getValue().trim(),
         EMP_PACKAGE_WEIGHT : ui("EMP_PACKAGE_WEIGHT").getValue().trim(),
         EMP_PACKAGE_DIMENSION: ui("EMP_PACKAGE_DIMENSION").getValue().trim(),
-        EMP_DELIVERY_CONFIRMATION: ui("EMP_DELIVERY_CONFIRMATION").getValue().trim(),
+        EMP_DELIVERY_CONFIRMATION: ui("EMP_DELIVERY_CONFIRMATION").getSelectedKey().trim(),
         EMP_SIGNATURE_REQUIRED: ui("EMP_SIGNATURE_REQUIRED").getSelectedKey().trim(),
         EMP_ORDER_NUMBER: ui("EMP_ORDER_NUMBER").getValue().trim(),
         EMP_SHIPPING_COST: ui("EMP_SHIPPING_COST").getValue().trim(),
@@ -349,7 +348,7 @@ const displayBp =  {
 			ui('DISPLAY_BP_TABLE').setModel(lt_model).bindRows("/");
 			ui("DISPLAY_BP_TABLE").setVisible(true);
 			
-			ui('DISPLAY_BP_TABLE_LABEL').setText("List (" + data.length + ")");
+			ui('DISPLAY_BP_TABLE_LABEL').setText("Delivery List (" + data.length + ")");
 			//fn_clear_table_sorter("DISPLAY_BP_TABLE");
 			
 		}		
@@ -413,7 +412,7 @@ const listingBp = {
 		ui('EMP_TRACKING_NUMBER').setValue("").setEditable(true);
 		ui('EMP_PACKAGE_WEIGHT').setValue("").setEditable(true);
 		ui('EMP_PACKAGE_DIMENSION').setValue("").setEditable(true);
-		ui('EMP_DELIVERY_CONFIRMATION').setValue("").setEditable(true);
+		ui('EMP_DELIVERY_CONFIRMATION').setSelectedKey("").setEditable(true);
 		ui('EMP_SIGNATURE_REQUIRED').setSelectedKey("").setEditable(true);
 		ui('EMP_ORDER_NUMBER').setValue("").setEditable(true);
 		ui('EMP_SHIPPING_COST').setValue("").setEditable(true);

@@ -37,6 +37,7 @@
 				switch(menu){
 					case "create_delivery" :
 						go_App_Right.to('CREATE_BP_PAGE');
+						emptyFields();
 						//after click DELIVERY-button > empty input fields
 						//emptyFields();
 						
@@ -140,7 +141,7 @@
         let createPageForm = new sap.uxap.ObjectPageLayout({
             headerTitle:[
                 new sap.uxap.ObjectPageHeader("OBJECTHEADER_BP_NAME",{
-                    objectTitle:"",
+                    objectTitle:"INFORMATION FORM",
 					showPlaceholder : false,
 					actions:[
                         new sap.uxap.ObjectPageHeaderActionButton("CREATE_BP_SAVE_BTN",{
@@ -158,7 +159,6 @@
 									else{
 										createBP();
 										go_App_Right.to('PAGE_BP_LISTING');
-
 								
 									}
 								}
@@ -309,7 +309,28 @@
 														new sap.m.Label({text:"Package Dimensions",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_PACKAGE_DIMENSION",{placeholder:"width x length x height",value:"", width:TextWidth, editable:true}),
 														new sap.m.Label({text:"Delivery Confirmation",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_DELIVERY_CONFIRMATION",{placeholder:"",value:"", width:TextWidth, editable:true}),
+														new sap.m.Select("EMP_DELIVERY_CONFIRMATION",{
+															items : [
+																new sap.ui.core.ListItem({
+																	text:"pending",
+																	key: "pending",
+																	icon: "sap-icon://pending",
+																	additionalText:"pending",
+																}),	
+																new sap.ui.core.ListItem({
+																	text:"yes",
+																	key: "yes",
+																	icon: "sap-icon://accept",
+																	additionalText:"yes",
+																}),
+																new sap.ui.core.ListItem({
+																	text:"no",
+																	key: "no",
+																	icon: "sap-icon://error",
+																	additionalText:"no",
+																})
+															]
+															}),							
 														new sap.m.Label({text:"Signature Required",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Select("EMP_SIGNATURE_REQUIRED",{
 															items : [
@@ -524,13 +545,15 @@
 						//new sap.m.Image({src: logo_path}),
 					],
 		
-					contentMiddle:[gv_Lbl_NewPrdPage_Title = new sap.m.Label("DISP_BP_TITLE",{text:"Display Business Partner"})],
+					contentMiddle:[gv_Lbl_NewPrdPage_Title = new sap.m.Label("DISP_BP_TITLE",{text:"Display Delivery Partner"})],
 					
 					contentRight:[
 						new sap.m.Button({
 							icon: "sap-icon://home",
 							press: function(){
 								window.location.href = MainPageLink; 
+						//go_App_Right.to('CREATE_BP_PAGE');
+
 							}
 						})
 					]
@@ -594,14 +617,14 @@
 						new sap.m.Toolbar({
 							design:"Transparent",
 							content:[
-								new sap.m.Text("DISPLAY_BP_TABLE_LABEL",{text:"List (0)"}),
+								new sap.m.Text("DISPLAY_BP_TABLE_LABEL",{text:"Delivery List (0)"}),
 							]
 						})
 					],
 					filter:function(oEvt){
 						oEvt.getSource().getBinding("rows").attachChange(function(oEvt){
 							var lv_row_count = oEvt.getSource().iLength;
-							ui('DISPLAY_BP_TABLE_LABEL').setText("List (" + lv_row_count + ")");
+							ui('DISPLAY_BP_TABLE_LABEL').setText("Delivery List (" + lv_row_count + ")");
 						});
 					},
 					cellClick: function(oEvt){
@@ -779,7 +802,7 @@ var lv_header = new sap.m.Bar({
 		}), 
 		//new sap.m.Image({src: logo_path}),
 		],
-	contentMiddle:[gv_Lbl_NewPrdPage_Title = new sap.m.Label("BP_LISTING_PAGE_LABEL",{text:"Business Partner Listing"})],
+	contentMiddle:[gv_Lbl_NewPrdPage_Title = new sap.m.Label("BP_LISTING_PAGE_LABEL",{text:"Business Delivery Table"})],
 	
 	contentRight:[
 		//fn_help_button(SelectedAppID,"BP_LISTING"),
@@ -793,7 +816,7 @@ var lv_header = new sap.m.Bar({
 });
 			
 var lv_crumbs = new sap.m.Breadcrumbs("LIST_BP_BRDCRMS",{
-	currentLocationText: "Business Partner Listing",
+	currentLocationText: "Business Delivery Table",
 	links: [
 		new sap.m.Link({
 			text:"Home",
