@@ -77,7 +77,6 @@ src: local('Road Rage'), local('Road Rage'), url('Road Rage.otf') format('otf');
 		opacity: 0.8;
 		text-decoration: none;
 	}
-
 	/** Display Delivery Partner */
 	.sapMLabelTextWrapper{
 		color: white;
@@ -101,7 +100,6 @@ margin: 0 auto;
 	color: white;
 }
 .sapUiTableCell{
-
 }
 .sapUiLocalBusyIndicator:focus:after {
 content: "";
@@ -113,7 +111,6 @@ bottom: 1px;
 border: 2px solid transparent;
 pointer-events: none
 }
-
 .nav_list{
 	font-size: 50px;
 }
@@ -148,5 +145,4 @@ pointer-events: none
 		background: transparent;
 		border: 1px transparent;
 	}
-</style>
 </style>

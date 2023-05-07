@@ -57,21 +57,21 @@
 		
         const gt_list = [
                 {
-                    title   : "DELIVERY",
-                    icon    : "sap-icon://add-product",
+                    title   : "Main Page",
+                    icon    : "sap-icon://course-program",
                     visible : true,
 					funct   :"create_delivery"
 		
                 },
                 {
-                    title   : "Display Delivery Partner",
-                    icon    : "sap-icon://business-card",
+                    title   : "Lookup User",
+                    icon    : "sap-icon://employee-lookup",
                     visible : true,
 					funct   :"display_delivery"
                 },
                 {
-                    title   : "Business Delivery Table",
-                    icon    : "sap-icon://checklist-item",
+                    title   : "Data Table",
+                    icon    : "sap-icon://bar-chart",
                     visible : true,
 					funct   :"delivery_listing"
 				}
@@ -218,9 +218,12 @@
                                                         new sap.ui.core.Title("GENERAL_INFO_TITLE1",{text:""}),
 														new sap.m.Label({text:"Delivery ID",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("DELIVERY_ID",{
+															//liveChange="onlyInteger",
 															width:TextWidth,
 															type: "Number"
+															
 														}),	
+														
                                                         new sap.m.Label({text:"Delivery Address",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("DELIVERY_ADDRESS",{
 															placeholder:"", 
@@ -553,7 +556,6 @@
 							press: function(){
 								window.location.href = MainPageLink; 
 						//go_App_Right.to('CREATE_BP_PAGE');
-
 							}
 						})
 					]

@@ -421,4 +421,13 @@ const listingBp = {
 		ui('EMP_ORDER_STATUS').setSelectedKey("").setEditable(true);
 	}
 	
+	const inputValidation = () => {
+	}
+
+	/** 
+	onlyInteger: function (oEvent) {
+            var value = oEvent.getSource().getValue().replace(/[^\d]/g, '');
+            oEvent.getSource().setValue(value);
+}
+**/
     </script>
