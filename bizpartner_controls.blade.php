@@ -218,11 +218,20 @@
                                                         new sap.ui.core.Title("GENERAL_INFO_TITLE1",{text:""}),
 														new sap.m.Label({text:"Delivery ID",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("DELIVERY_ID",{
-															//liveChange="onlyInteger",
-															width:TextWidth,
-															type: "Number"
+															value:"", 
+									              			width:TextWidth,
+															liveChange: function(oEvt){
+															fn_livechange_numeric_input(oEvt);
+																},
+															change : function(oEvt){
+															let lv_value = oEvt.getSource().getValue().trim();
+															let lv_bpid = lv_value;
+																ui("PANEL_FORM").setTitle(lv_bpid);
+										
+																					}
+															}),
 															
-														}),	
+									
 														
                                                         new sap.m.Label({text:"Delivery Address",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("DELIVERY_ADDRESS",{
