@@ -242,7 +242,17 @@
                                                         new sap.m.Label({text:"Contact Name",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_NAME",{placeholder:"",value:"", width:TextWidth, editable:true}),
                                                         new sap.m.Label({text:"Contact Phone Number",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_PHONE",{placeholder:"",value:"", width:TextWidth, editable:true,  type:"Number"}),
+														new sap.m.Input("EMP_PHONE",{placeholder:"",value:"", editable:true,  value:"", 
+									              			width:TextWidth,
+															liveChange: function(oEvt){
+															fn_livechange_numeric_input(oEvt);
+																},
+															change : function(oEvt){
+															let lv_value = oEvt.getSource().getValue().trim();
+															let lv_bpid = lv_value;
+																ui("PANEL_FORM").setTitle(lv_bpid);
+										
+																					}}),
 														new sap.m.Label({text:"Email Address",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_EMAIL",{placeholder:"",value:"", width:TextWidth, editable:true}),
 														new sap.m.Label({text:"Delivery Date",width:"130px"}).addStyleClass('class_label_padding'),
@@ -308,15 +318,34 @@
 															]
 															}),                                                        
                                                         new sap.m.Label({text:"Tracking Number",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_TRACKING_NUMBER",{placeholder:"",value:"", width:TextWidth,
-															type: "Number",
-															 editable:true}),
+														new sap.m.Input("EMP_TRACKING_NUMBER",{placeholder:"",value:"",  editable:true,
+									              			width:TextWidth,
+															liveChange: function(oEvt){
+															fn_livechange_numeric_input(oEvt);
+																},
+															change : function(oEvt){
+															let lv_value = oEvt.getSource().getValue().trim();
+															let lv_bpid = lv_value;
+																ui("PANEL_FORM").setTitle(lv_bpid);
+										
+																					}
+															}),
 	
 														
 														/** RIGHT PANEL **/
                                                         new sap.ui.core.Title("GENERAL_INFO_TITLE2",{text:""}),
 														new sap.m.Label({text:"Package Weight",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_PACKAGE_WEIGHT",{placeholder:"kg",value:"", width:TextWidth, editable:true,  type:"Number"}),
+														new sap.m.Input("EMP_PACKAGE_WEIGHT",{placeholder:"kg", editable:true, value:"", 
+									              			width:TextWidth,
+															liveChange: function(oEvt){
+															fn_livechange_numeric_input(oEvt);
+																},
+															change : function(oEvt){
+															let lv_value = oEvt.getSource().getValue().trim();
+															let lv_bpid = lv_value;
+																ui("PANEL_FORM").setTitle(lv_bpid);
+										
+																					}}),
  
 														new sap.m.Label({text:"Package Dimensions",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_PACKAGE_DIMENSION",{placeholder:"width x length x height",value:"", width:TextWidth, editable:true}),
@@ -359,14 +388,54 @@
 																	additionalText:"no",
 																})
 															]
-															}),														new sap.m.Label({text:"Order Number",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_ORDER_NUMBER",{placeholder:"",value:"", width:TextWidth,
-															type: "Number",
-															editable:true}),
+															}),	new sap.m.Label({text:"Order Number",width:"130px"}).addStyleClass('class_label_padding'),
+														new sap.m.Input("EMP_ORDER_NUMBER",{placeholder:"",editable: true, value:"", 
+									              			width:TextWidth,
+															liveChange: function(oEvt){
+															fn_livechange_numeric_input(oEvt);
+																},
+															change : function(oEvt){
+															let lv_value = oEvt.getSource().getValue().trim();
+															let lv_bpid = lv_value;
+																ui("PANEL_FORM").setTitle(lv_bpid);
+										
+																					}
+															}),
 														new sap.m.Label({text:"Shipping Cost",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_SHIPPING_COST",{placeholder:"",value:"", width:TextWidth, editable:true}),
+														new sap.m.Input("EMP_SHIPPING_COST",{placeholder:"", editable:true, value:"", 
+									              			width:TextWidth,
+															liveChange: function(oEvt){
+															fn_livechange_numeric_input(oEvt);
+																},
+															change : function(oEvt){
+															let lv_value = oEvt.getSource().getValue().trim();
+															let lv_bpid = lv_value;
+																ui("PANEL_FORM").setTitle(lv_bpid);
+										
+																					}}),
 														new sap.m.Label({text:"Insurance",width:"130px"}).addStyleClass('class_label_padding'),
-														new sap.m.Input("EMP_INSURANCE",{placeholder:"",value:"", width:TextWidth, editable:true, type:"Number"}),
+														new sap.m.Select("EMP_INSURANCE",{
+															items : [
+																new sap.ui.core.ListItem({
+																	text:"MANULIFE",
+																	key: "MANULIFE",
+																	icon: "sap-icon://insurance-life",
+																	additionalText:"MANULIFE",
+																}),	
+																new sap.ui.core.ListItem({
+																	text:"INSULAR",
+																	key: "INSULAR",
+																	icon: "sap-icon://insurance-life",
+																	additionalText:"INSULAR",
+																}),	
+																new sap.ui.core.ListItem({
+																	text:"AXA",
+																	key: "AXA",
+																	icon: "sap-icon://insurance-life",
+																	additionalText:"AXA",
+																})
+															]
+																})	,
 														new sap.m.Label({text:"Customs Information",width:"130px"}).addStyleClass('class_label_padding'),
 														new sap.m.Input("EMP_CUSTOMS_INFO",{placeholder:"",value:"", width:TextWidth, editable:true}),
 														new sap.m.Label({text:"Order Status",width:"130px"}).addStyleClass('class_label_padding'),

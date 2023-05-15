@@ -59,9 +59,10 @@
 						bp_id.EMP_PACKAGE_DIMENSION    		= ui('EMP_PACKAGE_DIMENSION').getValue().trim();
 						bp_id.EMP_DELIVERY_CONFIRMATION    		= ui('EMP_DELIVERY_CONFIRMATION').getSelectedKey().trim();
 						bp_id.EMP_SIGNATURE_REQUIRED    		= ui('EMP_SIGNATURE_REQUIRED').getSelectedKey().trim();
-						bp_id.EMP_ORDER_NUMBER    		= ui('EMP_ORDER_NUMBER').getValue().trim();
+						bp_id.EMP_ORDER_NUMBER    	
+							= ui('EMP_ORDER_NUMBER').getValue().trim();
 						bp_id.EMP_SHIPPING_COST    		= ui('EMP_SHIPPING_COST').getValue().trim();
-						bp_id.EMP_INSURANCE    		= ui('EMP_INSURANCE').getValue().trim();
+						bp_id.EMP_INSURANCE    		= ui('EMP_INSURANCE').getSelectedKey().trim();
 						bp_id.EMP_CUSTOMS_INFO    		= ui('EMP_CUSTOMS_INFO').getValue().trim();
 						bp_id.EMP_ORDER_STATUS    		= ui('EMP_ORDER_STATUS').getSelectedKey().trim();
 						
@@ -153,7 +154,7 @@
 				ui('EMP_SIGNATURE_REQUIRED').setSelectedKey(data[0].EMP_SIGNATURE_REQUIRED).setEditable(false);
 				ui('EMP_ORDER_NUMBER').setValue(data[0].EMP_ORDER_NUMBER).setEditable(false);
 				ui('EMP_SHIPPING_COST').setValue(data[0].EMP_SHIPPING_COST).setEditable(false);
-				ui('EMP_INSURANCE').setValue(data[0].EMP_INSURANCE).setEditable(false);
+				ui('EMP_INSURANCE').setSelectedKey(data[0].EMP_INSURANCE).setEditable(false);
 				ui('EMP_CUSTOMS_INFO').setValue(data[0].EMP_CUSTOMS_INFO).setEditable(false);
 				ui('EMP_ORDER_STATUS').setSelectedKey(data[0].EMP_ORDER_STATUS).setEditable(false);
 			
@@ -207,7 +208,7 @@
         EMP_SIGNATURE_REQUIRED: ui("EMP_SIGNATURE_REQUIRED").getSelectedKey().trim(),
         EMP_ORDER_NUMBER: ui("EMP_ORDER_NUMBER").getValue().trim(),
         EMP_SHIPPING_COST: ui("EMP_SHIPPING_COST").getValue().trim(),
-        EMP_INSURANCE: ui("EMP_INSURANCE").getValue().trim(),
+        EMP_INSURANCE: ui("EMP_INSURANCE").getSelectedKey().trim(),
         EMP_CUSTOMS_INFO: ui("EMP_CUSTOMS_INFO").getValue().trim(),
         EMP_ORDER_STATUS: ui("EMP_ORDER_STATUS").getSelectedKey().trim(),
     };
@@ -267,7 +268,7 @@ ui("EMP_DELIVERY_CONFIRMATION").setSelectedKey(false);
 ui("EMP_SIGNATURE_REQUIRED").setSelectedKey(false);
 ui("EMP_ORDER_NUMBER").setEditable(false);
 ui("EMP_SHIPPING_COST").setEditable(false);
-ui("EMP_INSURANCE").setEditable(false);
+ui("EMP_INSURANCE").setSelectedKey(false);
 ui("EMP_CUSTOMS_INFO").setEditable(false);
 ui("EMP_ORDER_STATUS").setSelectedKey(false);
 }
@@ -295,7 +296,7 @@ const createBP = () => {
         EMP_SIGNATURE_REQUIRED: ui("EMP_SIGNATURE_REQUIRED").getSelectedKey().trim(),
         EMP_ORDER_NUMBER: ui("EMP_ORDER_NUMBER").getValue().trim(),
         EMP_SHIPPING_COST: ui("EMP_SHIPPING_COST").getValue().trim(),
-        EMP_INSURANCE: ui("EMP_INSURANCE").getValue().trim(),
+        EMP_INSURANCE: ui("EMP_INSURANCE").getSelectedKey().trim(),
         EMP_CUSTOMS_INFO: ui("EMP_CUSTOMS_INFO").getValue().trim(),
         EMP_ORDER_STATUS: ui("EMP_ORDER_STATUS").getSelectedKey().trim(),
    		};
@@ -416,7 +417,7 @@ const listingBp = {
 		ui('EMP_SIGNATURE_REQUIRED').setSelectedKey("").setEditable(true);
 		ui('EMP_ORDER_NUMBER').setValue("").setEditable(true);
 		ui('EMP_SHIPPING_COST').setValue("").setEditable(true);
-		ui('EMP_INSURANCE').setValue("").setEditable(true);
+		ui('EMP_INSURANCE').setSelectedKey("").setEditable(true);
 		ui('EMP_CUSTOMS_INFO').setValue("").setEditable(true);
 		ui('EMP_ORDER_STATUS').setSelectedKey("").setEditable(true);
 	}
