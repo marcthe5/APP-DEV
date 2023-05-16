@@ -1,7 +1,0 @@
-after save change CRUMBS TITLE to Display Delivery Info - DONE
-
-if edit mode show save and cancel button - DONE
-
-create update function a add cell click  function navigate to create page with display mode
-
-create delivery menu when click clear the fields - DONE
